@@ -97,6 +97,10 @@ export class Line extends Note {
             note.style.strokeWidth = `${width}px`;
             note2.style.strokeWidth = `${width + this.values.buffer}px`;
         };
+        this.$setPattern = (pattern = this.values.pattern) => {
+            const note = document.getElementById(this.$raw_id());
+            note.style.strokeDasharray = pattern;
+        };
         this.$setMarkers = (start = this.values.markers.start, end = this.values.markers.end) => {
             const note = document.getElementById(this.$raw_id());
             if (note === null)
@@ -173,6 +177,15 @@ export class Line extends Note {
                         this.$width(parseInt(newVal.toString()));
                         this.$save();
                     },
+                },
+                {
+                    type: 'select',
+                    label: 'pattern',
+                    value: this.values.pattern.replaceAll(",", "_"),
+                    fn: newVal => {
+                        this.$pattern(newVal.toString().replaceAll("_", ","));
+                        this.$save();
+                    }
                 },
                 {
                     type: 'select',
@@ -308,6 +321,13 @@ export class Line extends Note {
                 this.$setWidth();
             }
             return this.values.width;
+        };
+        this.$pattern = (pattern = this.values.pattern) => {
+            if (pattern !== this.values.pattern) {
+                this.values.pattern = pattern;
+                this.$setPattern();
+            }
+            return this.values.pattern;
         };
         this.$markerStart = (marker = this.values.markers.start) => {
             if (marker !== this.values.markers.start) {

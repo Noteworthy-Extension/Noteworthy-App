@@ -28,7 +28,7 @@ const createData = {
 	defaultparam: {
 		line: {
 			color: '#000000',
-			width: 1,
+			width: 2,
 			markers: {
 				start: 'none',
 				end: 'none',
@@ -45,7 +45,7 @@ const createData = {
 	},
 	param: {
 		line: {
-			opacity: 1,
+			opacity: 2,
 			color: '#000000',
 			width: 1,
 			markers: {

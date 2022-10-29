@@ -158,6 +158,12 @@ export class Line extends Note {
 		note2.style.strokeWidth = `${width + this.values.buffer}px`;
 	};
 
+	private readonly $setPattern = (pattern = this.values.pattern): void => {
+		const note = <HTMLElement>document.getElementById(this.$raw_id());
+
+		note.style.strokeDasharray = pattern;
+	};
+
 	private readonly $setMarkers = (
 		start = this.values.markers.start,
 		end = this.values.markers.end
@@ -250,6 +256,15 @@ export class Line extends Note {
 					this.$width(parseInt(newVal.toString()));
 					this.$save();
 				},
+			},
+			{
+				type: 'select',
+				label: 'pattern',
+				value: this.values.pattern.replaceAll(",", "_"),
+				fn: newVal => {
+					this.$pattern(newVal.toString().replaceAll("_", ","));
+					this.$save();
+				}
 			},
 			{
 				type: 'select',
@@ -408,6 +423,14 @@ export class Line extends Note {
 			this.$setWidth(); //Sets the width of the note
 		}
 		return this.values.width; //Returns the new width
+	};
+
+	public readonly $pattern = (pattern: string = this.values.pattern): string => {
+		if (pattern !== this.values.pattern) {
+			this.values.pattern = pattern;
+			this.$setPattern(); //Sets the pattern of the note
+		}
+		return this.values.pattern; //Returns the new pattern
 	};
 
 	public readonly $markerStart = (marker: string = this.values.markers.start): string => {

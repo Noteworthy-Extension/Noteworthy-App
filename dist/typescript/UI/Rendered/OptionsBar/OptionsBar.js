@@ -103,17 +103,17 @@ const optionsBarHTML = `
 
 <svg width="0" height="0" style="pointer-events: none;">
 	<defs>
-		<marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
-			<path d="M0,0 L0,6 L9,3 z" fill="#000000" />
+		<marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto-start-reverse">
+			<polygon points="0 0, 6 3, 0 6" style="fill: none; stroke: black; stroke-width: 1px;" />
 		</marker>
-		<marker id="arrow2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
-			<path d="M0,0 L0,6 L9,3 z" fill="#000000" />
+		<marker id="arrow2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto-start-reverse">
+			<polygon points="0 0, 6 3, 0 6" style="fill: #000000; stroke: black; stroke-width: 1px;" />
 		</marker>
-		<marker id="dot" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
-			<circle cx="3" cy="3" r="3" fill="#000000" />
+		<marker id="dot" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto-start-reverse">
+			<circle cx="3" cy="3" r="3" style="fill: none; stroke: black; stroke-width: 1px;" />
 		</marker>
-		<marker id="dot2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
-			<circle cx="3" cy="3" r="3" fill="#000000" />
+		<marker id="dot2" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto-start-reverse">
+			<circle cx="3" cy="3" r="3" style="fill: #000000; stroke: black; stroke-width: 1px;" />
 		</marker>
 	</defs>
 </svg>

@@ -52,18 +52,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Did you know that people forget things in under 30 seconds, thats why we created Noteworthy.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Did you know that people forget things in under 30 seconds? That's why we created Noteworthy.
 
 ### Built With
 
-We built our app with pure Typescript, then we transpiled our code to JS. After compiling it to code that the browser can read we bundled our code into one minified file with Gulp. This is the file which we use for the chrome extension.
+We built our app with pure Typescript, then we transpile our code to JS. After compiling it to code that the browser can read we bundled our code into one minified file with Gulp. This is the file that we use for the chrome extension.
 
 * [![Typescript][Typescript]][Typescript-url]
 * [![Sass][Sass]][Sass-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -81,36 +77,24 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_There are a few ways to install noteworthy_
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+1. Chrome Webstore
+  a. The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the [Chrome Web Store](https://example.com)
+  b. Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+2. Bookmarklet
+  a. If you want to test Noteworthy before downloading it, you can run a bookmarklet. A bookmarklet is a Javascript in a bookmark, this bookmark has the be run every time you load a page making this not a long-term way to download.
+  b. Go to the [GitHub Pages](https://example.com) and drag the link that says "bookmarklet" into your bookmarks bar. (If it is hidden, press Ctrl + Shift + B).
 
-
-
+3. From the source
+  a. Git clone the [src repo](https://example.com). Then go to chrome://extensions and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -125,36 +109,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -162,10 +120,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments

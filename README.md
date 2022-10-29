@@ -60,8 +60,8 @@ Did you know that people forget things in under 30 seconds, thats why we created
 
 We built our app with pure Typescript, then we transpiled our code to JS. After compiling it to code that the browser can read we bundled our code into one minified file with Gulp. This is the file which we use for the chrome extension.
 
-* [![Typescript][Typescript]][Typescript-url]
-<!-- * [![React][React.js]][React-url] -->
+[![Typescript][Typescript]][Typescript-url]
+[![Sass][Sass]][Sass-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -186,3 +186,5 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png
 [Typescript-url]: https://typescriptlang.org
+[Sass]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667022004/Noteworthy%20App/Sass_Logo_Color.svg_80x80_vakikj.png
+[Sass-url]: https://sass-lang.com/

@@ -184,5 +184,5 @@ Use this space to list resources you find helpful and would like to give credit 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021576/Noteworthy%20App/TypescriptLogo_mivqsr.png
+[Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png
 [Typescript-url]: https://typescriptlang.org

@@ -1,0 +1,392 @@
+
+#NoteWorthyOfficial
+    .quillEditor-container
+        box-sizing: border-box
+        font-family: Helvetica, Arial, sans-serif
+        font-size: 13px
+        height: 100%
+        margin: 0px
+        position: relative
+
+        &.quillEditor-disabled .quillEditor-tooltip
+            visibility: hidden
+
+        &.quillEditor-disabled .quillEditor-editor ul[data-checked] > li::before
+            pointer-events: none
+
+    .quillEditor-clipboard
+        left: -100000px
+        height: 1px
+        overflow-y: hidden
+        position: absolute
+        top: 50%
+
+        & p
+            margin: 0
+            padding: 0
+
+    .quillEditor-editor
+        box-sizing: border-box
+        line-height: 1.42
+        height: 100%
+        outline: none
+        overflow-y: auto
+        padding: 12px 15px
+        tab-size: 4
+        -moz-tab-size: 4
+        text-align: left
+        white-space: pre-wrap
+        word-wrap: break-word
+
+        & > *
+            cursor: text
+
+    .quillEditor-editor p,
+    .quillEditor-editor ol,
+    .quillEditor-editor ul,
+    .quillEditor-editor pre,
+    .quillEditor-editor blockquote,
+    .quillEditor-editor h1,
+    .quillEditor-editor h2,
+    .quillEditor-editor h3,
+    .quillEditor-editor h4,
+    .quillEditor-editor h5,
+    .quillEditor-editor h6
+        margin: 0
+        padding: 0
+        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9
+
+    .quillEditor-editor ol,
+    .quillEditor-editor ul
+        padding-left: 1.5em
+
+    .quillEditor-editor ol > li,
+    .quillEditor-editor ul > li
+        list-style-type: none
+
+        &::before
+            content: '\2022'
+
+    .quillEditor-editor ul[data-checked=true],
+    .quillEditor-editor ul[data-checked=false]
+        pointer-events: none
+
+    .quillEditor-editor ul[data-checked=true] > li *,
+    .quillEditor-editor ul[data-checked=false] > li *
+        pointer-events: all
+
+    .quillEditor-editor ul[data-checked=true] > li::before,
+    .quillEditor-editor ul[data-checked=false] > li::before
+        color: #777
+        cursor: pointer
+        pointer-events: all
+
+    .quillEditor-editor ul[data-checked=true] > li::before
+        content: '\2611'
+
+    .quillEditor-editor ul[data-checked=false] > li::before
+        content: '\2610'
+
+    .quillEditor-editor li::before
+        display: inline-block
+        white-space: nowrap
+        width: 1.2em
+
+    .quillEditor-editor li:not(.quillEditor-direction-rtl)::before
+        margin-left: -1.5em
+        margin-right: 0.3em
+        text-align: right
+
+    .quillEditor-editor li.quillEditor-direction-rtl::before
+        margin-left: 0.3em
+        margin-right: -1.5em
+
+    .quillEditor-editor ol li:not(.quillEditor-direction-rtl),
+    .quillEditor-editor ul li:not(.quillEditor-direction-rtl)
+        padding-left: 1.5em
+
+    .quillEditor-editor ol li.quillEditor-direction-rtl,
+    .quillEditor-editor ul li.quillEditor-direction-rtl
+        padding-right: 1.5em
+
+    .quillEditor-editor ol li
+        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9
+        counter-increment: list-0
+
+        &:before
+            content: counter(list-0, decimal) '.'
+
+        &.quillEditor-indent-1
+            counter-increment: list-1
+
+        &.quillEditor-indent-1:before
+            content: counter(list-1, lower-alpha) '.'
+
+        &.quillEditor-indent-1
+            counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-2
+            counter-increment: list-2
+
+        &.quillEditor-indent-2:before
+            content: counter(list-2, lower-roman) '.'
+
+        &.quillEditor-indent-2
+            counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-3
+            counter-increment: list-3
+
+        &.quillEditor-indent-3:before
+            content: counter(list-3, decimal) '.'
+
+        &.quillEditor-indent-3
+            counter-reset: list-4 list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-4
+            counter-increment: list-4
+
+        &.quillEditor-indent-4:before
+            content: counter(list-4, lower-alpha) '.'
+
+        &.quillEditor-indent-4
+            counter-reset: list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-5
+            counter-increment: list-5
+
+        &.quillEditor-indent-5:before
+            content: counter(list-5, lower-roman) '.'
+
+        &.quillEditor-indent-5
+            counter-reset: list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-6
+            counter-increment: list-6
+
+        &.quillEditor-indent-6:before
+            content: counter(list-6, decimal) '.'
+
+        &.quillEditor-indent-6
+            counter-reset: list-7 list-8 list-9
+
+        &.quillEditor-indent-7
+            counter-increment: list-7
+
+        &.quillEditor-indent-7:before
+            content: counter(list-7, lower-alpha) '.'
+
+        &.quillEditor-indent-7
+            counter-reset: list-8 list-9
+
+        &.quillEditor-indent-8
+            counter-increment: list-8
+
+        &.quillEditor-indent-8:before
+            content: counter(list-8, lower-roman) '.'
+
+        &.quillEditor-indent-8
+            counter-reset: list-9
+
+        &.quillEditor-indent-9
+            counter-increment: list-9
+
+        &.quillEditor-indent-9:before
+            content: counter(list-9, decimal) '.'
+
+    .quillEditor-editor .quillEditor-indent-1:not(.quillEditor-direction-rtl)
+        padding-left: 3em
+
+    .quillEditor-editor li.quillEditor-indent-1:not(.quillEditor-direction-rtl)
+        padding-left: 4.5em
+
+    .quillEditor-editor .quillEditor-indent-1.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 3em
+
+    .quillEditor-editor li.quillEditor-indent-1.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 4.5em
+
+    .quillEditor-editor .quillEditor-indent-2:not(.quillEditor-direction-rtl)
+        padding-left: 6em
+
+    .quillEditor-editor li.quillEditor-indent-2:not(.quillEditor-direction-rtl)
+        padding-left: 7.5em
+
+    .quillEditor-editor .quillEditor-indent-2.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 6em
+
+    .quillEditor-editor li.quillEditor-indent-2.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 7.5em
+
+    .quillEditor-editor .quillEditor-indent-3:not(.quillEditor-direction-rtl)
+        padding-left: 9em
+
+    .quillEditor-editor li.quillEditor-indent-3:not(.quillEditor-direction-rtl)
+        padding-left: 10.5em
+
+    .quillEditor-editor .quillEditor-indent-3.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 9em
+
+    .quillEditor-editor li.quillEditor-indent-3.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 10.5em
+
+    .quillEditor-editor .quillEditor-indent-4:not(.quillEditor-direction-rtl)
+        padding-left: 12em
+
+    .quillEditor-editor li.quillEditor-indent-4:not(.quillEditor-direction-rtl)
+        padding-left: 13.5em
+
+    .quillEditor-editor .quillEditor-indent-4.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 12em
+
+    .quillEditor-editor li.quillEditor-indent-4.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 13.5em
+
+    .quillEditor-editor .quillEditor-indent-5:not(.quillEditor-direction-rtl)
+        padding-left: 15em
+
+    .quillEditor-editor li.quillEditor-indent-5:not(.quillEditor-direction-rtl)
+        padding-left: 16.5em
+
+    .quillEditor-editor .quillEditor-indent-5.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 15em
+
+    .quillEditor-editor li.quillEditor-indent-5.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 16.5em
+
+    .quillEditor-editor .quillEditor-indent-6:not(.quillEditor-direction-rtl)
+        padding-left: 18em
+
+    .quillEditor-editor li.quillEditor-indent-6:not(.quillEditor-direction-rtl)
+        padding-left: 19.5em
+
+    .quillEditor-editor .quillEditor-indent-6.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 18em
+
+    .quillEditor-editor li.quillEditor-indent-6.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 19.5em
+
+    .quillEditor-editor .quillEditor-indent-7:not(.quillEditor-direction-rtl)
+        padding-left: 21em
+
+    .quillEditor-editor li.quillEditor-indent-7:not(.quillEditor-direction-rtl)
+        padding-left: 22.5em
+
+    .quillEditor-editor .quillEditor-indent-7.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 21em
+
+    .quillEditor-editor li.quillEditor-indent-7.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 22.5em
+
+    .quillEditor-editor .quillEditor-indent-8:not(.quillEditor-direction-rtl)
+        padding-left: 24em
+
+    .quillEditor-editor li.quillEditor-indent-8:not(.quillEditor-direction-rtl)
+        padding-left: 25.5em
+
+    .quillEditor-editor .quillEditor-indent-8.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 24em
+
+    .quillEditor-editor li.quillEditor-indent-8.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 25.5em
+
+    .quillEditor-editor .quillEditor-indent-9:not(.quillEditor-direction-rtl)
+        padding-left: 27em
+
+    .quillEditor-editor li.quillEditor-indent-9:not(.quillEditor-direction-rtl)
+        padding-left: 28.5em
+
+    .quillEditor-editor .quillEditor-indent-9.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 27em
+
+    .quillEditor-editor li.quillEditor-indent-9.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 28.5em
+
+    .quillEditor-editor .quillEditor-video
+        display: block
+        max-width: 100%
+
+        &.quillEditor-align-center
+            margin: 0 auto
+
+        &.quillEditor-align-right
+            margin: 0 0 0 auto
+
+    .quillEditor-editor .quillEditor-bg-black
+        background-color: #000
+
+    .quillEditor-editor .quillEditor-bg-red
+        background-color: #e60000
+
+    .quillEditor-editor .quillEditor-bg-orange
+        background-color: #f90
+
+    .quillEditor-editor .quillEditor-bg-yellow
+        background-color: #ff0
+
+    .quillEditor-editor .quillEditor-bg-green
+        background-color: #008a00
+
+    .quillEditor-editor .quillEditor-bg-blue
+        background-color: #06c
+
+    .quillEditor-editor .quillEditor-bg-purple
+        background-color: #93f
+
+    .quillEditor-editor .quillEditor-color-white
+        color: #fff
+
+    .quillEditor-editor .quillEditor-color-red
+        color: #e60000
+
+    .quillEditor-editor .quillEditor-color-orange
+        color: #f90
+
+    .quillEditor-editor .quillEditor-color-yellow
+        color: #ff0
+
+    .quillEditor-editor .quillEditor-color-green
+        color: #008a00
+
+    .quillEditor-editor .quillEditor-color-blue
+        color: #06c
+
+    .quillEditor-editor .quillEditor-color-purple
+        color: #93f
+
+    .quillEditor-editor .quillEditor-font-serif
+        font-family: Georgia, Times New Roman, serif
+
+    .quillEditor-editor .quillEditor-font-monospace
+        font-family: Monaco, Courier New, monospace
+
+    .quillEditor-editor .quillEditor-size-small
+        font-size: 0.75em
+
+    .quillEditor-editor .quillEditor-size-large
+        font-size: 1.5em
+
+    .quillEditor-editor .quillEditor-size-huge
+        font-size: 2.5em
+
+    .quillEditor-editor .quillEditor-direction-rtl
+        direction: rtl
+        text-align: inherit
+
+    .quillEditor-editor .quillEditor-align-center
+        text-align: center
+
+    .quillEditor-editor .quillEditor-align-justify
+        text-align: justify
+
+    .quillEditor-editor .quillEditor-align-right
+        text-align: right
+
+    .quillEditor-editor.quillEditor-blank::before
+        color: rgba(0,0,0,0.6)
+        content: attr(data-placeholder)
+        font-style: italic
+        left: 15px
+        pointer-events: none
+        position: absolute
+        right: 15px

@@ -1,0 +1,42 @@
+.Noteworthy_tooltip
+    position: relative
+    display: inline-block
+    border-bottom: 1px dotted black
+
+    & .tool_tip_text
+        font-weight: 700
+        visibility: hidden
+        opacity: 0
+        transform: translate(-55%, 45%) scale(50%)
+        width: max-content
+        background-color: rgba(210, 210, 210, 0.5)
+        backdrop-filter: blur(10px)
+        color: var(--Text-inv-dark)
+        text-align: center
+        border-radius: 6px
+        padding: 0.5rem !important
+        transform-origin: top center
+
+        position: absolute
+        top: 100%
+        left: 50%
+        margin-left: -60px
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s
+        &::first-letter
+            text-transform: uppercase
+
+        &.flow_right
+            width: 3.7rem !important
+            min-width: 32px !important
+            transform: translate(80%, -100%) scale(50%) !important
+            transform-origin: center left !important
+            left: 0 !important
+            margin-left: 0 !important
+
+    &:hover .tool_tip_text
+        visibility: visible
+        opacity: 1
+        transform: translate(-55%, 45%) scale(100%) !important
+
+    &:hover .tool_tip_text.flow_right
+        transform: translate(80%, -100%) scale(100%) !important

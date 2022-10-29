@@ -1,0 +1,8 @@
+@import url('const.css');
+@import url('themeConst.css');
+:root {
+  --Theme:rgb(95, 209, 224);
+  --Theme-light: rgb(87, 181, 209);
+  --Theme-dark:  rgb(31, 154, 175);
+  --Theme-border: rgb(109, 178, 196);
+}

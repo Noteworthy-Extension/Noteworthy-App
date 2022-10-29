@@ -1,0 +1,938 @@
+#NoteWorthyOfficial
+    .quillEditor-container
+        box-sizing: border-box
+        font-family: Helvetica, Arial, sans-serif
+        font-size: 13px
+        height: 100%
+        margin: 0px
+        position: relative
+
+        &.quillEditor-disabled .quillEditor-tooltip
+            visibility: hidden
+
+        &.quillEditor-disabled .quillEditor-editor ul[data-checked] > li::before
+            pointer-events: none
+
+    .quillEditor-clipboard
+        left: -100000px
+        height: 1px
+        overflow-y: hidden
+        position: absolute
+        top: 50%
+
+        & p
+            margin: 0
+            padding: 0
+
+    .quillEditor-editor
+        box-sizing: border-box
+        line-height: 1.42
+        height: 100%
+        outline: none
+        overflow-y: auto
+        padding: 12px 15px
+        tab-size: 4
+        -moz-tab-size: 4
+        text-align: left
+        white-space: pre-wrap
+        word-wrap: break-word
+
+        & > *
+            cursor: text
+
+    .quillEditor-editor p,
+    .quillEditor-editor ol,
+    .quillEditor-editor ul,
+    .quillEditor-editor pre,
+    .quillEditor-editor blockquote,
+    .quillEditor-editor h1,
+    .quillEditor-editor h2,
+    .quillEditor-editor h3,
+    .quillEditor-editor h4,
+    .quillEditor-editor h5,
+    .quillEditor-editor h6
+        margin: 0
+        padding: 0
+        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9
+
+    .quillEditor-editor ol,
+    .quillEditor-editor ul
+        padding-left: 1.5em
+
+    .quillEditor-editor ol > li,
+    .quillEditor-editor ul > li
+        list-style-type: none
+
+        &::before
+            content: '\2022'
+
+    .quillEditor-editor ul[data-checked=true],
+    .quillEditor-editor ul[data-checked=false]
+        pointer-events: none
+
+    .quillEditor-editor ul[data-checked=true] > li *,
+    .quillEditor-editor ul[data-checked=false] > li *
+        pointer-events: all
+
+    .quillEditor-editor ul[data-checked=true] > li::before,
+    .quillEditor-editor ul[data-checked=false] > li::before
+        color: #777
+        cursor: pointer
+        pointer-events: all
+
+    .quillEditor-editor ul[data-checked=true] > li::before
+        content: '\2611'
+
+    .quillEditor-editor ul[data-checked=false] > li::before
+        content: '\2610'
+
+    .quillEditor-editor li::before
+        display: inline-block
+        white-space: nowrap
+        width: 1.2em
+
+    .quillEditor-editor li:not(.quillEditor-direction-rtl)::before
+        margin-left: -1.5em
+        margin-right: 0.3em
+        text-align: right
+
+    .quillEditor-editor li.quillEditor-direction-rtl::before
+        margin-left: 0.3em
+        margin-right: -1.5em
+
+    .quillEditor-editor ol li:not(.quillEditor-direction-rtl),
+    .quillEditor-editor ul li:not(.quillEditor-direction-rtl)
+        padding-left: 1.5em
+
+    .quillEditor-editor ol li.quillEditor-direction-rtl,
+    .quillEditor-editor ul li.quillEditor-direction-rtl
+        padding-right: 1.5em
+
+    .quillEditor-editor ol li
+        counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9
+        counter-increment: list-0
+
+        &:before
+            content: counter(list-0, decimal) '.'
+
+        &.quillEditor-indent-1
+            counter-increment: list-1
+
+        &.quillEditor-indent-1:before
+            content: counter(list-1, lower-alpha) '.'
+
+        &.quillEditor-indent-1
+            counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-2
+            counter-increment: list-2
+
+        &.quillEditor-indent-2:before
+            content: counter(list-2, lower-roman) '.'
+
+        &.quillEditor-indent-2
+            counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-3
+            counter-increment: list-3
+
+        &.quillEditor-indent-3:before
+            content: counter(list-3, decimal) '.'
+
+        &.quillEditor-indent-3
+            counter-reset: list-4 list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-4
+            counter-increment: list-4
+
+        &.quillEditor-indent-4:before
+            content: counter(list-4, lower-alpha) '.'
+
+        &.quillEditor-indent-4
+            counter-reset: list-5 list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-5
+            counter-increment: list-5
+
+        &.quillEditor-indent-5:before
+            content: counter(list-5, lower-roman) '.'
+
+        &.quillEditor-indent-5
+            counter-reset: list-6 list-7 list-8 list-9
+
+        &.quillEditor-indent-6
+            counter-increment: list-6
+
+        &.quillEditor-indent-6:before
+            content: counter(list-6, decimal) '.'
+
+        &.quillEditor-indent-6
+            counter-reset: list-7 list-8 list-9
+
+        &.quillEditor-indent-7
+            counter-increment: list-7
+
+        &.quillEditor-indent-7:before
+            content: counter(list-7, lower-alpha) '.'
+
+        &.quillEditor-indent-7
+            counter-reset: list-8 list-9
+
+        &.quillEditor-indent-8
+            counter-increment: list-8
+
+        &.quillEditor-indent-8:before
+            content: counter(list-8, lower-roman) '.'
+
+        &.quillEditor-indent-8
+            counter-reset: list-9
+
+        &.quillEditor-indent-9
+            counter-increment: list-9
+
+        &.quillEditor-indent-9:before
+            content: counter(list-9, decimal) '.'
+
+    .quillEditor-editor .quillEditor-indent-1:not(.quillEditor-direction-rtl)
+        padding-left: 3em
+
+    .quillEditor-editor li.quillEditor-indent-1:not(.quillEditor-direction-rtl)
+        padding-left: 4.5em
+
+    .quillEditor-editor .quillEditor-indent-1.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 3em
+
+    .quillEditor-editor li.quillEditor-indent-1.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 4.5em
+
+    .quillEditor-editor .quillEditor-indent-2:not(.quillEditor-direction-rtl)
+        padding-left: 6em
+
+    .quillEditor-editor li.quillEditor-indent-2:not(.quillEditor-direction-rtl)
+        padding-left: 7.5em
+
+    .quillEditor-editor .quillEditor-indent-2.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 6em
+
+    .quillEditor-editor li.quillEditor-indent-2.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 7.5em
+
+    .quillEditor-editor .quillEditor-indent-3:not(.quillEditor-direction-rtl)
+        padding-left: 9em
+
+    .quillEditor-editor li.quillEditor-indent-3:not(.quillEditor-direction-rtl)
+        padding-left: 10.5em
+
+    .quillEditor-editor .quillEditor-indent-3.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 9em
+
+    .quillEditor-editor li.quillEditor-indent-3.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 10.5em
+
+    .quillEditor-editor .quillEditor-indent-4:not(.quillEditor-direction-rtl)
+        padding-left: 12em
+
+    .quillEditor-editor li.quillEditor-indent-4:not(.quillEditor-direction-rtl)
+        padding-left: 13.5em
+
+    .quillEditor-editor .quillEditor-indent-4.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 12em
+
+    .quillEditor-editor li.quillEditor-indent-4.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 13.5em
+
+    .quillEditor-editor .quillEditor-indent-5:not(.quillEditor-direction-rtl)
+        padding-left: 15em
+
+    .quillEditor-editor li.quillEditor-indent-5:not(.quillEditor-direction-rtl)
+        padding-left: 16.5em
+
+    .quillEditor-editor .quillEditor-indent-5.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 15em
+
+    .quillEditor-editor li.quillEditor-indent-5.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 16.5em
+
+    .quillEditor-editor .quillEditor-indent-6:not(.quillEditor-direction-rtl)
+        padding-left: 18em
+
+    .quillEditor-editor li.quillEditor-indent-6:not(.quillEditor-direction-rtl)
+        padding-left: 19.5em
+
+    .quillEditor-editor .quillEditor-indent-6.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 18em
+
+    .quillEditor-editor li.quillEditor-indent-6.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 19.5em
+
+    .quillEditor-editor .quillEditor-indent-7:not(.quillEditor-direction-rtl)
+        padding-left: 21em
+
+    .quillEditor-editor li.quillEditor-indent-7:not(.quillEditor-direction-rtl)
+        padding-left: 22.5em
+
+    .quillEditor-editor .quillEditor-indent-7.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 21em
+
+    .quillEditor-editor li.quillEditor-indent-7.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 22.5em
+
+    .quillEditor-editor .quillEditor-indent-8:not(.quillEditor-direction-rtl)
+        padding-left: 24em
+
+    .quillEditor-editor li.quillEditor-indent-8:not(.quillEditor-direction-rtl)
+        padding-left: 25.5em
+
+    .quillEditor-editor .quillEditor-indent-8.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 24em
+
+    .quillEditor-editor li.quillEditor-indent-8.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 25.5em
+
+    .quillEditor-editor .quillEditor-indent-9:not(.quillEditor-direction-rtl)
+        padding-left: 27em
+
+    .quillEditor-editor li.quillEditor-indent-9:not(.quillEditor-direction-rtl)
+        padding-left: 28.5em
+
+    .quillEditor-editor .quillEditor-indent-9.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 27em
+
+    .quillEditor-editor li.quillEditor-indent-9.quillEditor-direction-rtl.quillEditor-align-right
+        padding-right: 28.5em
+
+    .quillEditor-editor .quillEditor-video
+        display: block
+        max-width: 100%
+
+        &.quillEditor-align-center
+            margin: 0 auto
+
+        &.quillEditor-align-right
+            margin: 0 0 0 auto
+
+    .quillEditor-editor .quillEditor-bg-black
+        background-color: #000
+
+    .quillEditor-editor .quillEditor-bg-red
+        background-color: #e60000
+
+    .quillEditor-editor .quillEditor-bg-orange
+        background-color: #f90
+
+    .quillEditor-editor .quillEditor-bg-yellow
+        background-color: #ff0
+
+    .quillEditor-editor .quillEditor-bg-green
+        background-color: #008a00
+
+    .quillEditor-editor .quillEditor-bg-blue
+        background-color: #06c
+
+    .quillEditor-editor .quillEditor-bg-purple
+        background-color: #93f
+
+    .quillEditor-editor .quillEditor-color-white
+        color: #fff
+
+    .quillEditor-editor .quillEditor-color-red
+        color: #e60000
+
+    .quillEditor-editor .quillEditor-color-orange
+        color: #f90
+
+    .quillEditor-editor .quillEditor-color-yellow
+        color: #ff0
+
+    .quillEditor-editor .quillEditor-color-green
+        color: #008a00
+
+    .quillEditor-editor .quillEditor-color-blue
+        color: #06c
+
+    .quillEditor-editor .quillEditor-color-purple
+        color: #93f
+
+    .quillEditor-editor .quillEditor-font-serif
+        font-family: Georgia, Times New Roman, serif
+
+    .quillEditor-editor .quillEditor-font-monospace
+        font-family: Monaco, Courier New, monospace
+
+    .quillEditor-editor .quillEditor-size-small
+        font-size: 0.75em
+
+    .quillEditor-editor .quillEditor-size-large
+        font-size: 1.5em
+
+    .quillEditor-editor .quillEditor-size-huge
+        font-size: 2.5em
+
+    .quillEditor-editor .quillEditor-direction-rtl
+        direction: rtl
+        text-align: inherit
+
+    .quillEditor-editor .quillEditor-align-center
+        text-align: center
+
+    .quillEditor-editor .quillEditor-align-justify
+        text-align: justify
+
+    .quillEditor-editor .quillEditor-align-right
+        text-align: right
+
+    .quillEditor-editor.quillEditor-blank::before
+        color: rgba(0,0,0,0.6)
+        content: attr(data-placeholder)
+        font-style: italic
+        left: 15px
+        pointer-events: none
+        position: absolute
+        right: 15px
+
+    .quillEditor-snow.quillEditor-toolbar:after,
+    .quillEditor-snow .quillEditor-toolbar:after
+        clear: both
+        content: ''
+        display: table
+
+    .quillEditor-snow.quillEditor-toolbar button,
+    .quillEditor-snow .quillEditor-toolbar button
+        background: none
+        border: none
+        cursor: pointer
+        display: inline-block
+        float: left
+        height: 24px
+        padding: 3px 5px
+        width: 28px
+
+    .quillEditor-snow.quillEditor-toolbar button svg,
+    .quillEditor-snow .quillEditor-toolbar button svg
+        float: left
+        height: 100%
+
+    .quillEditor-snow.quillEditor-toolbar button:active:hover,
+    .quillEditor-snow .quillEditor-toolbar button:active:hover
+        outline: none
+
+    .quillEditor-snow.quillEditor-toolbar input.quillEditor-image[type=file],
+    .quillEditor-snow .quillEditor-toolbar input.quillEditor-image[type=file]
+        display: none
+
+    .quillEditor-snow.quillEditor-toolbar button:hover,
+    .quillEditor-snow .quillEditor-toolbar button:hover,
+    .quillEditor-snow.quillEditor-toolbar button:focus,
+    .quillEditor-snow .quillEditor-toolbar button:focus,
+    .quillEditor-snow.quillEditor-toolbar button.quillEditor-active,
+    .quillEditor-snow .quillEditor-toolbar button.quillEditor-active,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label:hover,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label:hover,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label.quillEditor-active,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label.quillEditor-active,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item:hover,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item:hover,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected
+        color: #06c
+
+    .quillEditor-snow.quillEditor-toolbar button:hover .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button:hover .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar button:focus .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button:focus .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar button.quillEditor-active .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button.quillEditor-active .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar button:hover .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button:hover .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar button:focus .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button:focus .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar button.quillEditor-active .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button.quillEditor-active .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-stroke.quillEditor-fill
+        fill: #06c
+
+    .quillEditor-snow.quillEditor-toolbar button:hover .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar button:hover .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar button:focus .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar button:focus .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar button.quillEditor-active .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar button.quillEditor-active .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar button:hover .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar button:hover .quillEditor-stroke-miter,
+    .quillEditor-snow.quillEditor-toolbar button:focus .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar button:focus .quillEditor-stroke-miter,
+    .quillEditor-snow.quillEditor-toolbar button.quillEditor-active .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar button.quillEditor-active .quillEditor-stroke-miter,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label:hover .quillEditor-stroke-miter,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-label.quillEditor-active .quillEditor-stroke-miter,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item:hover .quillEditor-stroke-miter,
+    .quillEditor-snow.quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar .quillEditor-picker-item.quillEditor-selected .quillEditor-stroke-miter
+        stroke: #06c
+
+    @media (pointer: coarse)
+    .quillEditor-snow.quillEditor-toolbar button:hover:not(.quillEditor-active),
+    .quillEditor-snow .quillEditor-toolbar button:hover:not(.quillEditor-active)
+        color: #444
+
+    .quillEditor-snow.quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-fill,
+    .quillEditor-snow.quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-stroke.quillEditor-fill,
+    .quillEditor-snow .quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-stroke.quillEditor-fill
+        fill: #444
+
+    .quillEditor-snow.quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-stroke,
+    .quillEditor-snow .quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-stroke,
+    .quillEditor-snow.quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-stroke-miter,
+    .quillEditor-snow .quillEditor-toolbar button:hover:not(.quillEditor-active) .quillEditor-stroke-miter
+        stroke: #444
+
+    .quillEditor-snow
+        box-sizing: border-box
+
+        & *
+            box-sizing: border-box
+
+        & .quillEditor-hidden
+            display: none
+
+    .quillEditor-snow .quillEditor-out-bottom,
+    .quillEditor-snow .quillEditor-out-top
+        visibility: hidden
+
+    .quillEditor-snow .quillEditor-tooltip
+        position: absolute
+        transform: translateY(10px)
+
+        & a
+            cursor: pointer
+            text-decoration: none
+
+        &.quillEditor-flip
+            transform: translateY(-10px)
+
+    .quillEditor-snow .quillEditor-formats
+        display: inline-block
+        vertical-align: middle
+
+        &:after
+            clear: both
+            content: ''
+            display: table
+
+    .quillEditor-snow .quillEditor-stroke
+        fill: none
+        stroke: #444
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-width: 2
+
+        &-miter
+            fill: none
+            stroke: #444
+            stroke-miterlimit: 10
+            stroke-width: 2
+
+    .quillEditor-snow .quillEditor-fill,
+    .quillEditor-snow .quillEditor-stroke.quillEditor-fill
+        fill: #444
+
+    .quillEditor-snow .quillEditor-empty
+        fill: none
+
+    .quillEditor-snow .quillEditor-even
+        fill-rule: evenodd
+
+    .quillEditor-snow .quillEditor-thin,
+    .quillEditor-snow .quillEditor-stroke.quillEditor-thin
+        stroke-width: 1
+
+    .quillEditor-snow .quillEditor-transparent
+        opacity: 0.4
+
+    .quillEditor-snow .quillEditor-direction svg:last-child
+        display: none
+
+    .quillEditor-snow .quillEditor-direction.quillEditor-active svg:last-child
+        display: inline
+
+    .quillEditor-snow .quillEditor-direction.quillEditor-active svg:first-child
+        display: none
+
+    .quillEditor-snow .quillEditor-editor h1
+        font-size: 2em
+
+    .quillEditor-snow .quillEditor-editor h2
+        font-size: 1.5em
+
+    .quillEditor-snow .quillEditor-editor h3
+        font-size: 1.17em
+
+    .quillEditor-snow .quillEditor-editor h4
+        font-size: 1em
+
+    .quillEditor-snow .quillEditor-editor h5
+        font-size: 0.83em
+
+    .quillEditor-snow .quillEditor-editor h6
+        font-size: 0.67em
+
+    .quillEditor-snow .quillEditor-editor a
+        text-decoration: underline
+
+    .quillEditor-snow .quillEditor-editor blockquote
+        border-left: 4px solid #ccc
+        margin-bottom: 5px
+        margin-top: 5px
+        padding-left: 16px
+
+    .quillEditor-snow .quillEditor-editor code,
+    .quillEditor-snow .quillEditor-editor pre
+        background-color: #f0f0f0
+        border-radius: 3px
+
+        &
+            white-space: pre-wrap
+            margin-bottom: 5px
+            margin-top: 5px
+            padding: 5px 10px
+
+    .quillEditor-snow .quillEditor-editor code
+        font-size: 85%
+        padding: 2px 4px
+
+    .quillEditor-snow .quillEditor-editor pre.quillEditor-syntax
+        background-color: #23241f
+        color: #f8f8f2
+        overflow: visible
+
+    .quillEditor-snow .quillEditor-editor img
+        max-width: 100%
+
+    .quillEditor-snow .quillEditor-picker
+        color: #444
+        display: inline-block
+        float: left
+        font-size: 14px
+        font-weight: 500
+        height: 24px
+        position: relative
+        vertical-align: middle
+
+        &-label
+            cursor: pointer
+            display: inline-block
+            height: 100%
+            padding-left: 8px
+            padding-right: 2px
+            position: relative
+            width: 100%
+
+        &-label::before
+            display: inline-block
+            line-height: 22px
+
+        &-options
+            background-color: #fff
+            display: none
+            min-width: 100%
+            padding: 4px 8px
+            position: absolute
+            white-space: nowrap
+
+        &-options .quillEditor-picker-item
+            cursor: pointer
+            display: block
+            padding-bottom: 5px
+            padding-top: 5px
+
+        &.quillEditor-expanded .quillEditor-picker-label
+            color: #ccc
+            z-index: 2
+
+        &.quillEditor-expanded .quillEditor-picker-label .quillEditor-fill
+            fill: #ccc
+
+        &.quillEditor-expanded .quillEditor-picker-label .quillEditor-stroke
+            stroke: #ccc
+
+        &.quillEditor-expanded .quillEditor-picker-options
+            display: block
+            margin-top: -1px
+            top: 100%
+            z-index: 1
+
+    .quillEditor-snow .quillEditor-color-picker,
+    .quillEditor-snow .quillEditor-icon-picker
+        width: 28px
+
+    .quillEditor-snow .quillEditor-color-picker .quillEditor-picker-label,
+    .quillEditor-snow .quillEditor-icon-picker .quillEditor-picker-label
+        padding: 2px 4px
+
+    .quillEditor-snow .quillEditor-color-picker .quillEditor-picker-label svg,
+    .quillEditor-snow .quillEditor-icon-picker .quillEditor-picker-label svg
+        right: 4px
+
+    .quillEditor-snow .quillEditor-icon-picker .quillEditor-picker-options
+        padding: 4px 0px
+
+    .quillEditor-snow .quillEditor-icon-picker .quillEditor-picker-item
+        height: 24px
+        width: 24px
+        padding: 2px 4px
+
+    .quillEditor-snow .quillEditor-color-picker .quillEditor-picker-options
+        padding: 3px 5px
+        width: 152px
+
+    .quillEditor-snow .quillEditor-color-picker .quillEditor-picker-item
+        border: 1px solid transparent
+        float: left
+        height: 16px
+        margin: 2px
+        padding: 0px
+        width: 16px
+
+    .quillEditor-snow .quillEditor-picker:not(.quillEditor-color-picker):not(.quillEditor-icon-picker) svg
+        position: absolute
+        margin-top: -9px
+        right: 0
+        top: 50%
+        width: 18px
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-label]:not([data-label=''])::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-label[data-label]:not([data-label=''])::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-label[data-label]:not([data-label=''])::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-label]:not([data-label=''])::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-item[data-label]:not([data-label=''])::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-label]:not([data-label=''])::before
+        content: attr(data-label)
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header
+        width: 98px
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item::before
+        content: 'Normal'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-value="1"]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="1"]::before
+        content: 'Heading 1'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-value="2"]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="2"]::before
+        content: 'Heading 2'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-value="3"]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="3"]::before
+        content: 'Heading 3'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-value="4"]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="4"]::before
+        content: 'Heading 4'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-value="5"]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="5"]::before
+        content: 'Heading 5'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-label[data-value="6"]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="6"]::before
+        content: 'Heading 6'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="1"]::before
+        font-size: 2em
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="2"]::before
+        font-size: 1.5em
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="3"]::before
+        font-size: 1.17em
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="4"]::before
+        font-size: 1em
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="5"]::before
+        font-size: 0.83em
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-header .quillEditor-picker-item[data-value="6"]::before
+        font-size: 0.67em
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-font
+        width: 108px
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-label::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-item::before
+        content: 'Sans Serif'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-label[data-value=serif]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-item[data-value=serif]::before
+        content: 'Serif'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-label[data-value=monospace]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-item[data-value=monospace]::before
+        content: 'Monospace'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-item[data-value=serif]::before
+        font-family: Georgia, Times New Roman, serif
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-font .quillEditor-picker-item[data-value=monospace]::before
+        font-family: Monaco, Courier New, monospace
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size
+        width: 98px
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-label::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item::before
+        content: 'Normal'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-label[data-value=small]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-value=small]::before
+        content: 'Small'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-label[data-value=large]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-value=large]::before
+        content: 'Large'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-label[data-value=huge]::before,
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-value=huge]::before
+        content: 'Huge'
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-value=small]::before
+        font-size: 10px
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-value=large]::before
+        font-size: 18px
+
+    .quillEditor-snow .quillEditor-picker.quillEditor-size .quillEditor-picker-item[data-value=huge]::before
+        font-size: 32px
+
+    .quillEditor-snow .quillEditor-color-picker.quillEditor-background .quillEditor-picker-item
+        background-color: #fff
+
+    .quillEditor-snow .quillEditor-color-picker.quillEditor-color .quillEditor-picker-item
+        background-color: #000
+
+    .quillEditor-toolbar.quillEditor-snow
+        // border: 1px solid #ccc
+        box-sizing: border-box
+        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+        padding: 8px
+
+        & .quillEditor-formats
+            margin-right: 15px
+
+        & .quillEditor-picker-label
+            border: 1px solid transparent
+
+        & .quillEditor-picker-options
+            border: 1px solid transparent
+            box-shadow: rgba(0,0,0,0.2) 0 2px 8px
+
+        & .quillEditor-picker.quillEditor-expanded .quillEditor-picker-label
+            border-color: #ccc
+
+        & .quillEditor-picker.quillEditor-expanded .quillEditor-picker-options
+            border-color: #ccc
+
+    .quillEditor-toolbar.quillEditor-snow .quillEditor-color-picker .quillEditor-picker-item.quillEditor-selected,
+    .quillEditor-toolbar.quillEditor-snow .quillEditor-color-picker .quillEditor-picker-item:hover
+        border-color: #000
+
+    .quillEditor-toolbar.quillEditor-snow + .quillEditor-container.quillEditor-snow
+        border-top: 0px
+
+    .quillEditor-snow .quillEditor-tooltip
+        background-color: #fff
+        border: 1px solid #ccc
+        box-shadow: 0px 0px 5px #ddd
+        color: #444
+        padding: 5px 12px
+        white-space: nowrap
+
+        &::before
+            content: "Visit URL:"
+            line-height: 26px
+            margin-right: 8px
+
+        & input[type=text]
+            display: none
+            border: 1px solid #ccc
+            font-size: 13px
+            height: 26px
+            margin: 0px
+            padding: 3px 5px
+            width: 170px
+
+        & a.quillEditor-preview
+            display: inline-block
+            max-width: 200px
+            overflow-x: hidden
+            text-overflow: ellipsis
+            vertical-align: top
+
+        & a.quillEditor-action::after
+            border-right: 1px solid #ccc
+            content: 'Edit'
+            margin-left: 16px
+            padding-right: 8px
+
+        & a.quillEditor-remove::before
+            content: 'Remove'
+            margin-left: 8px
+
+        & a
+            line-height: 26px
+
+    .quillEditor-snow .quillEditor-tooltip.quillEditor-editing a.quillEditor-preview,
+    .quillEditor-snow .quillEditor-tooltip.quillEditor-editing a.quillEditor-remove
+        display: none
+
+    .quillEditor-snow .quillEditor-tooltip.quillEditor-editing input[type=text]
+        display: inline-block
+
+    .quillEditor-snow .quillEditor-tooltip.quillEditor-editing a.quillEditor-action::after
+        border-right: 0px
+        content: 'Save'
+        padding-right: 0px
+
+    .quillEditor-snow .quillEditor-tooltip[data-mode=link]::before
+        content: "Enter link:"
+
+    .quillEditor-snow .quillEditor-tooltip[data-mode=formula]::before
+        content: "Enter formula:"
+
+    .quillEditor-snow .quillEditor-tooltip[data-mode=video]::before
+        content: "Enter video:"
+
+    .quillEditor-snow a
+        color: #06c
+
+    .quillEditor-container.quillEditor-snow
+        border: 1px solid #ccc

@@ -1,0 +1,139 @@
+#NoteWorthyOfficial
+
+    .color_picker
+        background-color: white
+        border-radius: 0.5rem
+        box-shadow: 0 0 0.5rem 0.5rem rgba(0, 0, 0, 0.05)
+        padding: 1rem 1rem 0rem 1rem !important
+        width: 200px
+        height: max-content
+        max-height: max-content
+        display: none
+        position: absolute
+        top: 55px
+        right: 70px
+
+        &#fill
+            right: 0px
+
+        &#stroke
+            right: 25px
+
+        &.open
+            display: block
+
+        &-color_wrapper
+            background-color: white
+            height: 200px
+            width: 200px
+            border-radius: 0.35rem
+            display: grid
+            grid-template-columns: repeat(10, 1fr)
+            grid-template-rows: repeat(8, 1fr)
+
+            .color_picker-color
+                display: flex
+                justify-content: center
+                align-items: center
+                box-shadow: inset 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1)
+                width: 90%
+                aspect-ratio: 1/1
+                border-radius: 50%
+                cursor: pointer
+                transition: transform 100ms ease-in-out
+
+                &:hover
+                    transform: scale(1.05)
+                    box-shadow: inset 0px 0px 0px 1.5px rgba(0, 0, 0, 0.1)
+
+                &.active
+                    transform: scale(1.1)
+
+        .custom_color_input
+            display: block
+
+        .custom_color_wrapper
+            transition: 150ms ease-in-out
+
+            &:hover
+                transform: scale(1.1)
+
+        .custom_color_image
+            pointer-events: none
+            display: block
+            position: absolute
+            z-index: 1
+            height: 20px
+            transform: scale(80%)
+            aspect-ratio: 1/1
+            object-fit: cover
+            border-radius: 0.35rem
+
+        .color_input_wrapper, &-input_wrapper
+            display: flex
+            justify-content: center
+            align-items: center
+
+        &-input_wrapper
+            position: relative
+            top: -15px
+            flex-direction: row
+            gap: 0.5rem
+
+            input[type="color"]
+                border-radius: 50%
+                display: block
+                width: 32px
+                height: 32px
+                border: none
+
+        &-transparent
+            backface-visibility: hidden
+            transform: translateZ(0)
+            -webkit-font-smoothing: subpixel-antialiased
+            -mox-font-smoothing: subpixel-antialiased
+
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 100%
+            height: 30px
+            background-color: transparent
+            border: 1px solid rgba(0, 0, 0, 0.1)
+            border-radius: 0.35rem
+            cursor: pointer
+            transition: transform 150ms ease-in-out
+
+            &:hover
+                transform: scale(1.02)
+
+            img
+                height: 20px
+                width: 20px
+                object-fit: cover
+                border-radius: 50%
+
+        &-color_display
+            transition: background-color 150ms ease-in-out
+            position: absolute
+            height: 2px !important
+            margin-top: 1px
+            width: 22px
+            border-radius: 0.1rem
+
+    .custom_color_wrapper
+        border-radius: 50%
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 32px
+        aspect-ratio: 1/1
+        background-color: red
+        overflow: hidden
+
+        input[type="color"]
+            border-radius: 50%
+            display: block
+            min-width: 40px
+            min-height: 40px
+            border: none

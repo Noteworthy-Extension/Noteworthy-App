@@ -1,0 +1,8 @@
+/* Const root variables even for custom themes */
+:root {
+  --Red: red;
+  --Blue: blue;
+  --Green: green;
+
+  --Font: -apple-system, BlinkMacSystemFont, sans-serif;
+}

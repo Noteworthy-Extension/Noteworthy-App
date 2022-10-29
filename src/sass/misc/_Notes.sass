@@ -1,0 +1,88 @@
+#NoteWorthyOfficial
+    $selectColor: #0b7af4
+
+    .Noteworthy-selectBox
+        background-color: none
+        pointer-events: none !important
+        border: 2px solid $selectColor !important
+        padding: 0
+        transform: translate(-2px, -2px)
+
+        $handleRadius: 5px
+        $handleBuffer: 2px
+        $handleRotBuffer: 30px
+
+        &-handle
+            position: absolute
+            width: 10px
+            height: 10px
+            background-color: $selectColor
+            border: 1px solid white !important
+
+        &-handle::after
+            content: ""
+            position: absolute
+            top: -$handleBuffer
+            left: -$handleBuffer
+            width: $handleRadius * 2 + $handleBuffer * 2
+            height: $handleRadius * 2 + $handleBuffer * 2
+
+        .handle-r
+            top: -$handleRadius - $handleRotBuffer !important
+            left: calc(50% - $handleRadius)
+            border-radius: 50%
+            cursor: crosshair
+
+        .handle-r_line
+            top: -$handleRotBuffer !important
+            left: 50%
+            width: 1px
+            height: $handleRotBuffer
+            border: none !important
+
+        .handle-n
+            top: -$handleRadius * 1.5 !important
+            left: calc(50% - $handleRadius)
+
+        .handle-s
+            top: calc(100% - $handleRadius) !important
+            left: calc(50% - $handleRadius)
+
+        .handle-e
+            top: calc(50% - $handleRadius)
+            left: calc(100% - $handleRadius) !important
+
+        .handle-w
+            top: calc(50% - $handleRadius)
+            left: -$handleRadius * 1.5 !important
+
+        .handle-n
+            cursor: n-resize
+
+        .handle-s
+            cursor: s-resize
+
+        .handle-w
+            cursor: w-resize
+
+        .handle-e
+            cursor: e-resize
+
+        .handle-n.handle-w
+            cursor: nw-resize
+
+        .handle-n.handle-e
+            cursor: ne-resize
+
+        .handle-s.handle-w
+            cursor: sw-resize
+
+        .handle-s.handle-e
+            cursor: se-resize
+
+    .NoteWorthyOfficial-note
+        cursor: pointer
+        fill: rgba(0.0, 0.0, 0.0, 0.0)
+
+        $time: 150ms
+        transition: fill $time ease-in-out, stroke $time ease-in-out, stroke-width $time ease-in-out

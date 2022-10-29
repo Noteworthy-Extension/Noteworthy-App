@@ -1,0 +1,218 @@
+#NoteWorthyOfficial
+  .Noteworthy_options_bar //Main options bar, contains everything related to it
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    flex-direction: column
+    gap: 0.25rem
+    height: max(50vh, #{max-content})
+    width: 50px
+    padding: 0.25rem 0
+
+    &-alignX-left //should open to right
+      .Noteworthy_options_bar-dropdown
+        translate: 55px 0
+
+    &-alignX-right //should open to left
+      .Noteworthy_options_bar-dropdown
+        translate: -55px 0
+
+    &-alignY-top //should open down
+      flex-direction: column !important
+
+      .Noteworthy_options_bar-dropdown.rect_dropdown
+        transform: translateY(305px)
+
+      .Noteworthy_options_bar-dropdown.arrow_dropdown
+        transform: translateY(203px)
+
+      .Noteworthy_options_bar-dropdown.line_dropdown
+        transform: translateY(145px)
+
+      .Noteworthy_options_bar-dropdown.draw_dropdown
+        transform: translateY(95px)
+
+    &-alignY-bottom //should open up
+      flex-direction: column-reverse !important
+
+      .Noteworthy_options_bar-dropdown
+        flex-direction: column-reverse !important
+
+      .Noteworthy_options_bar-dropdown.rect_dropdown
+        transform: translateY(-300px)
+
+      .Noteworthy_options_bar-dropdown.arrow_dropdown
+        transform: translateY(-200px)
+
+      .Noteworthy_options_bar-dropdown.line_dropdown
+        transform: translateY(-145px)
+
+      .Noteworthy_options_bar-dropdown.draw_dropdown
+        transform: translateY(-95px)
+
+    div
+      display: none
+
+    &-blur
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background-color: rgba(210, 210, 210, 0.5)
+      border: 1px solid rgba(0, 0, 0, 0.15) !important
+      backdrop-filter: blur(10px)
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)
+      border-radius: 50px
+
+    &.Noteworthy_options_bar-open //Options bar is open
+      background-color: transparent
+      border-radius: 50px
+
+      & > div
+        display: flex
+
+      .Noteworthy_options_bar-subitem
+        display: flex
+        justify-content: center
+        align-items: center
+
+        &:not(:first-child)
+          // border-bottom: 1px solid rgb(200,200,200)
+          padding-bottom: 0.25rem
+
+      .Noteworthy_options_bar-subitem
+        display: flex
+        justify-content: center
+        align-items: center
+
+        &:not(:last-child)
+          padding-bottom: 0.25rem
+          // border-bottom: 1px solid rgb(200,200,200)
+
+        &:not(:first-child)
+          padding-top: 0.25rem
+
+    &.Noteworthy_options_bar-open .Noteworthy_options_bar-btn
+      background-color: rgba(0, 0, 0, 0.0)
+      border: none
+
+    &-btn //Button to toggle options bar
+      background-color: rgba(0, 0, 0, 0.15)
+      border: 1px solid rgba(0, 0, 0, 0.15)
+      backdrop-filter: blur(8px)
+      cursor: pointer
+
+      width: 45px
+      margin-left: 2px
+      aspect-ratio: 1/1
+      flex: 0 0 100%
+
+      border-radius: 50%
+
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+
+      // transition: border-radius 600ms ease-in-out, background-color 500ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out
+
+      span //The X that turn to a plus
+        display: block
+        position: absolute
+
+        background-color: black
+        width: 24px
+        height: 3px
+        border-radius: 1px
+        transition: 400ms ease-in-out
+
+        &:nth-child(1)
+          transform: rotate(90deg)
+
+      &-active
+        backdrop-filter: blur(0px)
+
+        span:nth-child(1)
+          transform: rotate(45deg * 7)
+
+        span:nth-child(2)
+          transform: rotate(-45deg * 7)
+
+    &-item // Options bar item that don't have sub options
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      gap: 0.25rem
+      // background-color: rgba(0, 0, 0, 0.25)
+      border: 1px solid var(--Bg)
+      cursor: pointer
+
+      width: 40px
+      height: 40px
+
+      border-radius: 0.25rem
+      border: 3px solid transparent
+
+      transition: border-radius 600ms ease-in-out, background-color 250ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out
+
+      & > img[class*='Noteworthy_options_bar']
+        transition: transform 200ms ease-in-out, filter 200ms ease-in-out
+
+      &:hover > img[class*='Noteworthy_options_bar']
+        transform: scale(105%)
+
+      &.active_option > img[class*='Noteworthy_options_bar'] //When a non parent to a dropdown is active
+        // filter: invert(20%)
+        filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='invert'><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter></svg>#invert")
+        // transform: scale(1.2)
+
+    &-items // The dropdown button that expands with suboptions
+      position: fixed
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      background-color: red
+      height: max-content
+      padding: 0.25rem
+
+    &-dropdown //Select all the dropdowns
+      display: none
+      position: fixed
+
+      div, img
+        display: none
+
+      &.dropdown_open //When the dropdown is open
+        position: fixed
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        overflow: hidden
+        height: max-content
+        padding: 0.75rem
+
+        background-color: rgba(210, 210, 210, 0.5)
+        backdrop-filter: blur(10px)
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)
+        border-radius: 50px
+
+        div, img
+          display: flex
+
+    &-subitem.active_option //The subitem that is active
+
+      img
+        filter: invert(50%)
+
+    &-subitem
+      aspect-ratio: 1/1
+      width: 100%
+      display: flex
+      justify-content: center
+      align-items: center

@@ -1,0 +1,25 @@
+#NoteWorthyOfficial
+    .quillEditor
+        select
+            background-color: transparent
+            border: none
+            border-radius: 0
+
+    .quill
+
+        &-headings-tab //Tab that can change what heading style you are using
+            padding-right: 0.75rem
+
+            &::after //A dividing line between the tabs
+                content: ''
+                position: absolute
+                top: 0
+                right: 0
+                height: 100%
+                border-right: 1px solid var(--Bg-shade)
+
+        &-fonts-tab //Tab containing all of the fonts
+            padding-right: 0.75rem
+
+            &::after //A dividing line between the tabs
+                @extend .quill-headings-tab

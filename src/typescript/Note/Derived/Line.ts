@@ -345,37 +345,9 @@ export class Line extends Note {
 		this.$setPoints();
 	};
 
-	public readonly $size = (size, add_size = { width: 0, height: 0 }) => {
-		//scale the size based on the size of the note
-		const scale = {
-			width: size.width / this.values.size.width,
-			height: size.height / this.values.size.height,
-		};
-
-		this.values.points = this.values.points.map(point => {
-			return {
-				x: (point.x - this.values.size.width / 2) * scale.width + size.width / 2,
-				y: (point.y - this.values.size.height / 2) * scale.height + size.height / 2,
-			};
-		});
-
-		this.values.size = size;
-		this.$setPoints();
-		// const maxX = Math.max(...this.values.points.map(point => point.x));
-		// const minX = Math.min(...this.values.points.map(point => point.x));
-		// const maxY = Math.max(...this.values.points.map(point => point.y));
-		// const minY = Math.min(...this.values.points.map(point => point.y));
-		// const scale = {
-		// 	x: (size.width + add_size.width) / (maxX - minX),
-		// 	y: (size.height + add_size.height) / (maxX - minX),
-		// };
-		// this.values.points = this.values.points.map(point => {
-		// 	return {
-		// 		x: point.x * scale.x,
-		// 		y: point.y * scale.y,
-		// 	};
-		// });
-		// this.$setPoints();
+	//size = { width: 0, height: 0 },
+	public readonly $size = (add_size = { width: 0, height: 0 }) => {
+		//scale the size based on the size of the note only using add_size
 	};
 
 	public readonly $rotation = (rotation: number = this.values.rotation) => {

@@ -7,15 +7,15 @@
     <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Noteworthy App</h3>
 
   <p align="center">
     A note-taking app that lets you annotate any website.
     <br />
     <br />
-    <a href="#">Download the extension in the chrome web store</a>
+    [Download](https://example.com) the extension in the chrome web store
     ·
-    <a href="#">Test out the editor here</a>
+    [Test](https://example.com) out the editor here
     ·
     <a href="https://github.com/Noteworthy-Extension/Noteworthy-App/issues">Report a bug</a>
   </p>
@@ -34,12 +34,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -73,7 +71,8 @@ _There are a few ways to install noteworthy_
   <li>Chrome Webstore</li>
 
   <ul>
-    <li>The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the [Chrome Web Store](https://example.com)</li>
+    <li>The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the
+    [Chrome Webstore](https://example.com)</li>
 
     <li>Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return</li>
   </ul>
@@ -124,8 +123,8 @@ A list of some of the tools and resources we used to make our app.
 * [Sass Live Compile](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 
   ### Developers
-  * @AwesomeMarley
-  * @Touch-Grass
+  * [@AwesomeMarley](https://github.com/AwesomeMarley)
+  * [@Touch-Grass](https://github.com/Touch-Grass)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png

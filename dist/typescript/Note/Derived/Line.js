@@ -257,19 +257,7 @@ export class Line extends Note {
             });
             this.$setPoints();
         };
-        this.$size = (size, add_size = { width: 0, height: 0 }) => {
-            const scale = {
-                width: size.width / this.values.size.width,
-                height: size.height / this.values.size.height,
-            };
-            this.values.points = this.values.points.map(point => {
-                return {
-                    x: (point.x - this.values.size.width / 2) * scale.width + size.width / 2,
-                    y: (point.y - this.values.size.height / 2) * scale.height + size.height / 2,
-                };
-            });
-            this.values.size = size;
-            this.$setPoints();
+        this.$size = (add_size = { width: 0, height: 0 }) => {
         };
         this.$rotation = (rotation = this.values.rotation) => {
             if (rotation && rotation !== this.values.rotation) {

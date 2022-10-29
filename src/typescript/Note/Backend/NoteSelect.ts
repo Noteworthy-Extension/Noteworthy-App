@@ -29,7 +29,7 @@ export const NoteSelect = {
 
 	enabled: false,
 
-	copyKey: "NoteWorthyOfficialClipboard",
+	copyKey: 'NoteWorthyOfficialClipboard',
 
 	init: () => {
 		document.addEventListener('click', (e: MouseEvent) => {
@@ -37,18 +37,20 @@ export const NoteSelect = {
 		});
 
 		document.addEventListener('keydown', (e: KeyboardEvent) => {
-			if(!NoteSelect.enabled) return;
+			if (!NoteSelect.enabled) return;
 			if (!NoteSelect.active) return;
-			if(NoteSelect.active instanceof Textbox && NoteSelect.active.$isFocusedEditor()) {
+			if (NoteSelect.active instanceof Textbox && NoteSelect.active.$isFocusedEditor()) {
 				if (e.key === 'Escape') NoteSelect.active.$enableEditor(false);
 				return;
-			};
+			}
 			if (e.key === 'c' && e.ctrlKey) {
-				navigator.clipboard.writeText(NoteSelect.copyKey+NoteEncryption.encode(NoteSelect.active.$data()));
+				navigator.clipboard.writeText(
+					NoteSelect.copyKey + NoteEncryption.encode(NoteSelect.active.$data())
+				);
 			}
 			if (e.key === 'Escape') NoteSelect.unselect();
 			if (e.key === 'Backspace') {
-				if(confirm('Are you sure you want to delete this note?')) {
+				if (confirm('Are you sure you want to delete this note?')) {
 					NoteSelect.active.$delete();
 					NoteSelect.unselect();
 				}
@@ -57,16 +59,16 @@ export const NoteSelect = {
 
 		//add event listener to paste event
 		document.addEventListener('paste', (e: ClipboardEvent) => {
-			if(!NoteSelect.enabled) return;
-			if(NoteSelect.active instanceof Textbox && NoteSelect.active.$isFocusedEditor()) return;
+			if (!NoteSelect.enabled) return;
+			if (NoteSelect.active instanceof Textbox && NoteSelect.active.$isFocusedEditor()) return;
 			let text = e.clipboardData?.getData('text/plain').trim();
-			if(!text) return;
-			if(!text.startsWith(NoteSelect.copyKey)) return;
+			if (!text) return;
+			if (!text.startsWith(NoteSelect.copyKey)) return;
 			text = text.replace(NoteSelect.copyKey, '');
 			e.preventDefault();
 			const data = NoteEncryption.decode(text);
-			console.log("GOT THE DATA FROM THE CLIPBOARD: ", data);
-			switch(data.type) {
+			console.log('GOT THE DATA FROM THE CLIPBOARD: ', data);
+			switch (data.type) {
 				case 'Textbox':
 					NoteSelect.active = new Textbox(data.parameters, data.content);
 					break;
@@ -110,7 +112,7 @@ export const NoteSelect = {
 	updateEditBar: () => {
 		if (!NoteSelect.active) return;
 		EditBar.loadInputs(NoteSelect.active.$getInputs());
-		if(NoteSelect.active instanceof Textbox) EditBar.showToolbar(NoteSelect.active.$raw_id());
+		if (NoteSelect.active instanceof Textbox) EditBar.showToolbar(NoteSelect.active.$raw_id());
 	},
 
 	updateSelectBox: () => {
@@ -189,7 +191,7 @@ export const NoteSelect = {
 
 			// 		console.log("offset: " + offset);
 			// 		console.log("rotations: " + rotations);
-					
+
 			// 		for (let i = 0; i < rotations.length; i++) {
 			// 			const rot = rotations[i];
 			// 			if (inRange(rotation, rot)) {

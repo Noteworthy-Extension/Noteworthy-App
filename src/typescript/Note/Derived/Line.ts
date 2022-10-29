@@ -70,7 +70,7 @@ export class Line extends Note {
 		rotation: 0,
 		pattern: 'none',
 		points: [],
-		buffer: 10,
+		buffer: 25,
 		hitID: '-hitbox',
 	};
 
@@ -102,45 +102,16 @@ export class Line extends Note {
 
 		note.setAttribute('points', this.$compressPoints(points));
 		note2.setAttribute('points', this.$compressPoints(points));
+		NoteSelect.updateSelectBox();
 	};
-
-	private readonly $setPosition = (position = this.values.position): void => {
-		const note = <HTMLElement>document.getElementById(this.$raw_id());
-		const note2 = <HTMLElement>document.getElementById(this.$raw_id() + this.values.hitID);
-
-		note.setAttribute('transform', `translate(${position.x}, ${position.y})`);
-		note2.setAttribute('transform', `translate(${position.x}, ${position.y})`);
-	};
-
-	private readonly $setSize = (size = this.values.size): void => {
-		const note = <HTMLElement>document.getElementById(this.$raw_id());
-		const note2 = <HTMLElement>document.getElementById(this.$raw_id() + this.values.hitID);
-
-		//scale all points to fit the new size
-		const points = this.$points();
-		const pointsX = points.map(point => point.x);
-		const pointsY = points.map(point => point.y);
-		const x = Math.min(...pointsX);
-		const y = Math.min(...pointsY);
-		const width = Math.max(...pointsX) - x;
-		const height = Math.max(...pointsY) - y;
-
-		const pointsScaled = points.map(point => {
-			return {
-				x: ((point.x - x) / width) * size.width,
-				y: ((point.y - y) / height) * size.height,
-			};
-		});
-
-		this.$setPoints(pointsScaled);
-	}
 
 	private readonly $setRotation = (rotation = this.values.rotation): void => {
 		const note = <HTMLElement>document.getElementById(this.$raw_id());
 		const note2 = <HTMLElement>document.getElementById(this.$raw_id() + this.values.hitID);
-		
+
 		note.style.rotate = `${rotation}deg`;
 		note2.style.rotate = `${rotation}deg`;
+		NoteSelect.updateSelectBox();
 	};
 
 	private readonly $setStroke = (stroke = this.values.stroke): void => {
@@ -156,6 +127,7 @@ export class Line extends Note {
 
 		note.style.strokeWidth = `${width}px`;
 		note2.style.strokeWidth = `${width + this.values.buffer}px`;
+		NoteSelect.updateSelectBox();
 	};
 
 	private readonly $setPattern = (pattern = this.values.pattern): void => {
@@ -181,12 +153,12 @@ export class Line extends Note {
 	};
 
 	private readonly $init_draggable = (): void => {
-		const note = document.getElementById(this.$raw_id());
-		if (note === null) return;
+		const note = <HTMLElement>document.getElementById(this.$raw_id() + this.values.hitID);
 
 		note.addEventListener('mousedown', (e: MouseEvent) => {
 			e.stopImmediatePropagation();
-			if(!NoteSelect.enabled) return;
+			console.log('mousedown');
+			if (!NoteSelect.enabled) return;
 			this.dragData.isDragging = true; // start dragging
 
 			this.dragData.notePos = { x: e.pageX, y: e.pageY }; // get the current mouse position
@@ -198,7 +170,7 @@ export class Line extends Note {
 				x: e.pageX - this.dragData.notePos.x,
 				y: e.pageY - this.dragData.notePos.y,
 			}; // Calculates the difference between the mouse position and the note position
-			this.$position(this.values.position, differNotePos); // Sets the new position
+			this.$position(differNotePos); // Sets the new position
 
 			this.$save(); // Saves the notes new position
 
@@ -206,14 +178,14 @@ export class Line extends Note {
 		});
 
 		document.addEventListener('mousemove', (e: MouseEvent) => {
-			if(!NoteSelect.enabled) return;
+			if (!NoteSelect.enabled) return;
 			if (!this.dragData.isDragging) return; //Returns if not dragging
 
 			const differNotePos = {
 				x: e.pageX - this.dragData.notePos.x,
 				y: e.pageY - this.dragData.notePos.y,
 			}; // Difference between mouse and note previous position
-			this.$position(this.values.position, differNotePos); // Updates the notes position by adding x and y as second param
+			this.$position(differNotePos); // Updates the notes position by adding x and y as second param
 
 			this.dragData.notePos = { x: e.pageX, y: e.pageY }; // Updates the notes previous position
 		});
@@ -232,8 +204,8 @@ export class Line extends Note {
 			?.insertAdjacentElement('beforeend', this.$getHTML(true));
 
 		this.$init_selectable();
+		this.$init_draggable();
 
-		// this.$init_editBar();
 		this.$save();
 	};
 
@@ -260,11 +232,11 @@ export class Line extends Note {
 			{
 				type: 'select',
 				label: 'pattern',
-				value: this.values.pattern.replaceAll(",", "_"),
+				value: this.values.pattern.replaceAll(',', '_'),
 				fn: newVal => {
-					this.$pattern(newVal.toString().replaceAll("_", ","));
+					this.$pattern(newVal.toString().replaceAll('_', ','));
 					this.$save();
-				}
+				},
 			},
 			{
 				type: 'select',
@@ -314,7 +286,7 @@ export class Line extends Note {
 	public readonly $save = (recordHistory = true): void => {
 		const noteData = NoteEncryption.encode(this.$data());
 
-		if(NoteSelect.active == this) NoteSelect.updateSelectBox();
+		if (NoteSelect.active == this) NoteSelect.updateSelectBox();
 
 		if (this.noteIndex === 0) {
 			this.noteIndex = NoteStorage.saveNote(noteData);
@@ -363,42 +335,47 @@ export class Line extends Note {
 		this.$setPoints();
 	};
 
-	public readonly $position = (
-		position: { x: number; y: number } = this.values.position,
-		add_position = { x: 0, y: 0 }
-	): { x: number; y: number } => {
-		let changed = false;
-		if (position !== this.values.position) {
-			this.values.position.x = position.x;
-			this.values.position.y = position.y;
-			changed = true;
-		}
-		if (add_position.x !== 0 || add_position.y !== 0) {
-			this.values.position.x = parseInt(this.values.position.x.toString()) + add_position.x;
-			this.values.position.y = parseInt(this.values.position.y.toString()) + add_position.y;
-			changed = true;
-		}
-		if (changed) this.$setPosition(); //Sets the position of the note
-		return this.values.position; //Returns the new position
+	public readonly $position = (add_position = { x: 0, y: 0 }) => {
+		this.values.points = this.values.points.map(point => {
+			return {
+				x: point.x + add_position.x,
+				y: point.y + add_position.y,
+			};
+		});
+		this.$setPoints();
 	};
 
-	public readonly $size = (
-		size: { width: number; height: number } = this.values.size,
-		add_size = { width: 0, height: 0 }
-	): { width: number; height: number } => {
-		let changed = false;
-		if (size !== this.values.size) {
-			this.values.size.width = size.width;
-			this.values.size.height = size.height;
-			changed = true;
-		}
-		if (add_size.width !== 0 || add_size.height !== 0) {
-			this.values.size.width = parseInt(this.values.size.width.toString()) + add_size.width;
-			this.values.size.height = parseInt(this.values.size.height.toString()) + add_size.height;
-			changed = true;
-		}
-		if (changed) this.$setSize(); //Sets the size of the note
-		return this.values.size; //Returns the new size
+	public readonly $size = (size, add_size = { width: 0, height: 0 }) => {
+		//scale the size based on the size of the note
+		const scale = {
+			width: size.width / this.values.size.width,
+			height: size.height / this.values.size.height,
+		};
+
+		this.values.points = this.values.points.map(point => {
+			return {
+				x: (point.x - this.values.size.width / 2) * scale.width + size.width / 2,
+				y: (point.y - this.values.size.height / 2) * scale.height + size.height / 2,
+			};
+		});
+
+		this.values.size = size;
+		this.$setPoints();
+		// const maxX = Math.max(...this.values.points.map(point => point.x));
+		// const minX = Math.min(...this.values.points.map(point => point.x));
+		// const maxY = Math.max(...this.values.points.map(point => point.y));
+		// const minY = Math.min(...this.values.points.map(point => point.y));
+		// const scale = {
+		// 	x: (size.width + add_size.width) / (maxX - minX),
+		// 	y: (size.height + add_size.height) / (maxX - minX),
+		// };
+		// this.values.points = this.values.points.map(point => {
+		// 	return {
+		// 		x: point.x * scale.x,
+		// 		y: point.y * scale.y,
+		// 	};
+		// });
+		// this.$setPoints();
 	};
 
 	public readonly $rotation = (rotation: number = this.values.rotation) => {

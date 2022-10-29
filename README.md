@@ -64,54 +64,40 @@ We built our app with pure Typescript, then we transpile our code to JS. After c
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+This is a guide on a few ways to install the extension.
 
 ### Installation
 
 _There are a few ways to install noteworthy_
+<ul>
+  <li>Chrome Webstore</li>
 
-1. Chrome Webstore
+  <ul>
+    <li>The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the [Chrome Web Store](https://example.com)</li>
 
-a. The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the [Chrome Web Store](https://example.com)
+    <li>Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return</li>
+  </ul>
 
-b. Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return
+  <li>2. Bookmarklet</li>
 
-2. Bookmarklet
+  <ul>
+    <li>
+      If you want to test Noteworthy before downloading it, you can run a bookmarklet. A bookmarklet is a Javascript in a bookmark, this bookmark has the be run every time you load a page making this not a long-term way to download.
+    </li>
 
-a. If you want to test Noteworthy before downloading it, you can run a bookmarklet. A bookmarklet is a Javascript in a bookmark, this bookmark has the be run every time you load a page making this not a long-term way to download.
+    <li>
+      Go to the [GitHub Pages](https://example.com) and drag the link that says "bookmarklet" into your bookmarks bar. (If it is hidden, press Ctrl + Shift + B).
+    </li>
+  </ul>
 
-b. Go to the [GitHub Pages](https://example.com) and drag the link that says "bookmarklet" into your bookmarks bar. (If it is hidden, press Ctrl + Shift + B).
+  <li>3. From the source</li>
 
-3. From the source
-
-a. Git clone the [src repo](https://example.com). Then go to chrome://extensions and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+  <ul>
+    <li>
+      Git clone the [src repo](https://example.com). Then go to chrome://extensions and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
+    </li>
+  </ul>
+</ul>
 
 <!-- LICENSE -->
 ## License
@@ -121,23 +107,25 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+If you have a question or anything to say, contact us here:
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+### noteworthy.extension@gmail.com
+
+Project Link: [https://github.com/Noteworthy-Extension/Noteworthy-App](https://github.com/Noteworthy-Extension/Noteworthy-App)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+A list of some of the tools and resources we used to make our app.
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [Icons8](https://icons8.com/)
+* [Quill Editor](https://quilljs.com/)
+* [Gulp](https://gulpjs.com/)
+* [Sass Live Compile](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
+
+  ### Developers
+  * @AwesomeMarley
+  * @Touch-Grass
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png

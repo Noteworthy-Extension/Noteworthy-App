@@ -32,7 +32,7 @@ export class Line extends Note {
             rotation: 0,
             pattern: 'none',
             points: [],
-            buffer: 10,
+            buffer: 25,
             hitID: '-hitbox',
         };
         this.$extractPoints = (content) => {
@@ -54,36 +54,14 @@ export class Line extends Note {
             const note2 = document.getElementById(this.$raw_id() + this.values.hitID);
             note.setAttribute('points', this.$compressPoints(points));
             note2.setAttribute('points', this.$compressPoints(points));
-        };
-        this.$setPosition = (position = this.values.position) => {
-            const note = document.getElementById(this.$raw_id());
-            const note2 = document.getElementById(this.$raw_id() + this.values.hitID);
-            note.setAttribute('transform', `translate(${position.x}, ${position.y})`);
-            note2.setAttribute('transform', `translate(${position.x}, ${position.y})`);
-        };
-        this.$setSize = (size = this.values.size) => {
-            const note = document.getElementById(this.$raw_id());
-            const note2 = document.getElementById(this.$raw_id() + this.values.hitID);
-            const points = this.$points();
-            const pointsX = points.map(point => point.x);
-            const pointsY = points.map(point => point.y);
-            const x = Math.min(...pointsX);
-            const y = Math.min(...pointsY);
-            const width = Math.max(...pointsX) - x;
-            const height = Math.max(...pointsY) - y;
-            const pointsScaled = points.map(point => {
-                return {
-                    x: ((point.x - x) / width) * size.width,
-                    y: ((point.y - y) / height) * size.height,
-                };
-            });
-            this.$setPoints(pointsScaled);
+            NoteSelect.updateSelectBox();
         };
         this.$setRotation = (rotation = this.values.rotation) => {
             const note = document.getElementById(this.$raw_id());
             const note2 = document.getElementById(this.$raw_id() + this.values.hitID);
             note.style.rotate = `${rotation}deg`;
             note2.style.rotate = `${rotation}deg`;
+            NoteSelect.updateSelectBox();
         };
         this.$setStroke = (stroke = this.values.stroke) => {
             const note = document.getElementById(this.$raw_id());
@@ -96,6 +74,7 @@ export class Line extends Note {
             const note2 = document.getElementById(this.$raw_id() + this.values.hitID);
             note.style.strokeWidth = `${width}px`;
             note2.style.strokeWidth = `${width + this.values.buffer}px`;
+            NoteSelect.updateSelectBox();
         };
         this.$setPattern = (pattern = this.values.pattern) => {
             const note = document.getElementById(this.$raw_id());
@@ -113,11 +92,10 @@ export class Line extends Note {
             notePos: { x: 0, y: 0 },
         };
         this.$init_draggable = () => {
-            const note = document.getElementById(this.$raw_id());
-            if (note === null)
-                return;
+            const note = document.getElementById(this.$raw_id() + this.values.hitID);
             note.addEventListener('mousedown', (e) => {
                 e.stopImmediatePropagation();
+                console.log('mousedown');
                 if (!NoteSelect.enabled)
                     return;
                 this.dragData.isDragging = true;
@@ -130,7 +108,7 @@ export class Line extends Note {
                     x: e.pageX - this.dragData.notePos.x,
                     y: e.pageY - this.dragData.notePos.y,
                 };
-                this.$position(this.values.position, differNotePos);
+                this.$position(differNotePos);
                 this.$save();
                 this.dragData.isDragging = false;
             });
@@ -143,7 +121,7 @@ export class Line extends Note {
                     x: e.pageX - this.dragData.notePos.x,
                     y: e.pageY - this.dragData.notePos.y,
                 };
-                this.$position(this.values.position, differNotePos);
+                this.$position(differNotePos);
                 this.dragData.notePos = { x: e.pageX, y: e.pageY };
             });
         };
@@ -156,6 +134,7 @@ export class Line extends Note {
                 .querySelector(`${this.mainContainer} > svg`)
                 ?.insertAdjacentElement('beforeend', this.$getHTML(true));
             this.$init_selectable();
+            this.$init_draggable();
             this.$save();
         };
         this.$getInputs = () => {
@@ -181,11 +160,11 @@ export class Line extends Note {
                 {
                     type: 'select',
                     label: 'pattern',
-                    value: this.values.pattern.replaceAll(",", "_"),
+                    value: this.values.pattern.replaceAll(',', '_'),
                     fn: newVal => {
-                        this.$pattern(newVal.toString().replaceAll("_", ","));
+                        this.$pattern(newVal.toString().replaceAll('_', ','));
                         this.$save();
-                    }
+                    },
                 },
                 {
                     type: 'select',
@@ -269,37 +248,28 @@ export class Line extends Note {
             this.values.points[index] = point;
             this.$setPoints();
         };
-        this.$position = (position = this.values.position, add_position = { x: 0, y: 0 }) => {
-            let changed = false;
-            if (position !== this.values.position) {
-                this.values.position.x = position.x;
-                this.values.position.y = position.y;
-                changed = true;
-            }
-            if (add_position.x !== 0 || add_position.y !== 0) {
-                this.values.position.x = parseInt(this.values.position.x.toString()) + add_position.x;
-                this.values.position.y = parseInt(this.values.position.y.toString()) + add_position.y;
-                changed = true;
-            }
-            if (changed)
-                this.$setPosition();
-            return this.values.position;
+        this.$position = (add_position = { x: 0, y: 0 }) => {
+            this.values.points = this.values.points.map(point => {
+                return {
+                    x: point.x + add_position.x,
+                    y: point.y + add_position.y,
+                };
+            });
+            this.$setPoints();
         };
-        this.$size = (size = this.values.size, add_size = { width: 0, height: 0 }) => {
-            let changed = false;
-            if (size !== this.values.size) {
-                this.values.size.width = size.width;
-                this.values.size.height = size.height;
-                changed = true;
-            }
-            if (add_size.width !== 0 || add_size.height !== 0) {
-                this.values.size.width = parseInt(this.values.size.width.toString()) + add_size.width;
-                this.values.size.height = parseInt(this.values.size.height.toString()) + add_size.height;
-                changed = true;
-            }
-            if (changed)
-                this.$setSize();
-            return this.values.size;
+        this.$size = (size, add_size = { width: 0, height: 0 }) => {
+            const scale = {
+                width: size.width / this.values.size.width,
+                height: size.height / this.values.size.height,
+            };
+            this.values.points = this.values.points.map(point => {
+                return {
+                    x: (point.x - this.values.size.width / 2) * scale.width + size.width / 2,
+                    y: (point.y - this.values.size.height / 2) * scale.height + size.height / 2,
+                };
+            });
+            this.values.size = size;
+            this.$setPoints();
         };
         this.$rotation = (rotation = this.values.rotation) => {
             if (rotation && rotation !== this.values.rotation) {

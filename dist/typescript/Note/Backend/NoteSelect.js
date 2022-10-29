@@ -22,7 +22,7 @@ const selectBoxHandleHTML = `
 export const NoteSelect = {
     active: null,
     enabled: false,
-    copyKey: "NoteWorthyOfficialClipboard",
+    copyKey: 'NoteWorthyOfficialClipboard',
     init: () => {
         document.addEventListener('click', (e) => {
             if (!e.target.closest('#NoteWorthyOfficial'))
@@ -38,7 +38,6 @@ export const NoteSelect = {
                     NoteSelect.active.$enableEditor(false);
                 return;
             }
-            ;
             if (e.key === 'c' && e.ctrlKey) {
                 navigator.clipboard.writeText(NoteSelect.copyKey + NoteEncryption.encode(NoteSelect.active.$data()));
             }
@@ -64,7 +63,7 @@ export const NoteSelect = {
             text = text.replace(NoteSelect.copyKey, '');
             e.preventDefault();
             const data = NoteEncryption.decode(text);
-            console.log("GOT THE DATA FROM THE CLIPBOARD: ", data);
+            console.log('GOT THE DATA FROM THE CLIPBOARD: ', data);
             switch (data.type) {
                 case 'Textbox':
                     NoteSelect.active = new Textbox(data.parameters, data.content);

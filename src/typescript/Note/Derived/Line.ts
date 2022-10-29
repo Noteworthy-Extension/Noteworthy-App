@@ -346,7 +346,22 @@ export class Line extends Note {
 	};
 
 	//size = { width: 0, height: 0 },
-	public readonly $size = (add_size = { width: 0, height: 0 }) => {
+	public readonly $size = (size = { width: 0, height: 0 }, add_size = { width: 0, height: 0 }) => {
+		console.log(add_size);
+		const maxX = Math.max(...this.values.points.map(point => point.x));
+		const maxY = Math.max(...this.values.points.map(point => point.y));
+		console.log(maxX, maxY);
+		const ratioX = (maxX + add_size.width) / maxX;
+		const ratioY = (maxY + add_size.height) / maxY;
+		console.log(ratioX, ratioY);
+		this.values.points = this.values.points.map(point => {
+			return {
+				x: (add_size.width != 0 ? point.x * ratioX : point.x) - add_size.width,
+				y: (add_size.height != 0 ? point.y * ratioY : point.y) - add_size.height,
+			};
+		});
+		console.log(this.values.points);
+		this.$setPoints();
 		//scale the size based on the size of the note only using add_size
 	};
 

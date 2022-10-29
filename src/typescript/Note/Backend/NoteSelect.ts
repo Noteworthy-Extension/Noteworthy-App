@@ -262,6 +262,7 @@ export const NoteSelect = {
 							NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 });
 						} else if (handle.classList.contains('handle-e')) {
 							const deltaX = e.clientX - handleData.x;
+							// if (NoteSelect.active instanceof Line) NoteSelect.active.$position(NoteSelect.active.values.position, { x: deltaX, });
 							NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 });
 						}
 						if (handle.classList.contains('handle-n')) {
@@ -270,6 +271,7 @@ export const NoteSelect = {
 							NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY });
 						} else if (handle.classList.contains('handle-s')) {
 							const deltaY = e.clientY - handleData.y;
+							// if (NoteSelect.active instanceof Line) NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: deltaY });
 							NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY });
 						}
 

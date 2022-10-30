@@ -258,23 +258,31 @@ export const NoteSelect = {
 						if (!handleData.moving) return;
 						if (handle.classList.contains('handle-w')) {
 							const deltaX = -(e.clientX - handleData.x);
-							if(!(NoteSelect.active instanceof Line))
-							NoteSelect.active.$position(NoteSelect.active.values.position, { x: -deltaX, y: 0 });
+							if (!(NoteSelect.active instanceof Line))
+								NoteSelect.active.$position(NoteSelect.active.values.position, { x: -deltaX, y: 0 });
 							NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 });
 						} else if (handle.classList.contains('handle-e')) {
 							const deltaX = e.clientX - handleData.x;
 							// if (NoteSelect.active instanceof Line) NoteSelect.active.$position(NoteSelect.active.values.position, { x: deltaX, y: 0});
-							NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 }, { width: true, height: false });
+							NoteSelect.active.$size(
+								NoteSelect.active.values.size,
+								{ width: deltaX, height: 0 },
+								{ width: true, height: false }
+							);
 						}
 						if (handle.classList.contains('handle-n')) {
 							const deltaY = -(e.clientY - handleData.y);
-							if(!(NoteSelect.active instanceof Line))
-							NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: -deltaY });
+							if (!(NoteSelect.active instanceof Line))
+								NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: -deltaY });
 							NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY });
 						} else if (handle.classList.contains('handle-s')) {
 							const deltaY = e.clientY - handleData.y;
 							// if (NoteSelect.active instanceof Line) NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: deltaY });
-							NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY }, { width: false, height: true });
+							NoteSelect.active.$size(
+								NoteSelect.active.values.size,
+								{ width: 0, height: deltaY },
+								{ width: false, height: true }
+							);
 						}
 
 						handleData.x = e.clientX;

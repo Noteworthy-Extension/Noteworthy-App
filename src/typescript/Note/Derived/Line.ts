@@ -9,6 +9,7 @@ export class Line extends Note {
 	constructor(parameters: (string | number)[], content: string, index = 0) {
 		super('Line', index);
 
+		this.values.opacity = parseInt(parameters[this.valueIndex.opacity]?.toString()) || this.values.opacity;
 		this.values.stroke = parameters[this.valueIndex.stroke]?.toString() || this.values.stroke;
 		this.values.width = parseInt(parameters[this.valueIndex.width]?.toString()) || this.values.width;
 
@@ -23,6 +24,7 @@ export class Line extends Note {
 	}
 
 	readonly valueIndex = {
+		opacity: 0,
 		stroke: 1,
 		width: 2,
 		markers: {
@@ -33,6 +35,7 @@ export class Line extends Note {
 	};
 
 	values: {
+		opacity: number;
 		stroke: string;
 		width: number;
 		markers: {
@@ -53,6 +56,7 @@ export class Line extends Note {
 		buffer: number;
 		hitID: string;
 	} = {
+		opacity: 100,
 		stroke: '#000000',
 		width: 1,
 		markers: {
@@ -146,6 +150,14 @@ export class Line extends Note {
 		note.style.strokeWidth = `${width}px`;
 		note2.style.strokeWidth = `${width + this.values.buffer}px`;
 		NoteSelect.updateSelectBox();
+	};
+
+	private readonly $setOpacity = (opacity = this.values.opacity): void => {
+		const note = <HTMLElement>document.getElementById(this.$raw_id());
+		const note2 = <HTMLElement>document.getElementById(this.$raw_id() + this.values.hitID);
+
+		note.style.opacity = `${opacity}%`;
+		note2.style.opacity = `${opacity}%`;
 	};
 
 	private readonly $setPattern = (pattern = this.values.pattern): void => {
@@ -248,6 +260,15 @@ export class Line extends Note {
 			},
 			{
 				type: 'select',
+				label: 'opacity',
+				value: this.values.opacity,
+				fn: newVal => {
+					this.$opacity(parseInt(newVal.toString()));
+					this.$save();
+				}
+			},
+			{
+				type: 'select',
 				label: 'pattern',
 				value: this.values.pattern.replaceAll(',', '_'),
 				fn: newVal => {
@@ -283,6 +304,7 @@ export class Line extends Note {
 			compressedParameters[index] = val;
 		};
 
+		assignParam(this.valueIndex.opacity, this.values.opacity);
 		assignParam(this.valueIndex.stroke, this.values.stroke);
 		assignParam(this.valueIndex.width, this.values.width);
 		assignParam(this.valueIndex.markers.start, this.values.markers.start);
@@ -415,6 +437,14 @@ export class Line extends Note {
 		return this.values.width; //Returns the new width
 	};
 
+	public readonly $opacity = (opacity: number = this.values.opacity): number => {
+		if (opacity !== this.values.opacity) {
+			this.values.opacity = opacity;
+			this.$setOpacity(); //Sets the opacity of the note
+		}
+		return this.values.opacity; //Returns the new opacity
+	};
+
 	public readonly $pattern = (pattern: string = this.values.pattern): string => {
 		if (pattern !== this.values.pattern) {
 			this.values.pattern = pattern;
@@ -452,6 +482,7 @@ export class Line extends Note {
 			marker-mid: none;
 			marker-end: url(#${this.values.markers.end});
             fill: none;
+			opacity: ${this.values.opacity}%;
             stroke: ${this.values.stroke};
             stroke-width: ${this.values.width};
 			stroke-dasharray: ${this.values.pattern};

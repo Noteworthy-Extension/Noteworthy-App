@@ -25,7 +25,7 @@ export const NoteSelect = {
     copyKey: 'NoteWorthyOfficialClipboard',
     init: () => {
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('#NoteWorthyOfficial'))
+            if (e.target !== document.querySelector("#NoteWorthyOfficial-MainContainer *") || !e.target.closest('#NoteWorthyOfficial'))
                 NoteSelect.unselect();
         });
         document.addEventListener('keydown', (e) => {
@@ -41,8 +41,9 @@ export const NoteSelect = {
             if (e.key === 'c' && e.ctrlKey) {
                 navigator.clipboard.writeText(NoteSelect.copyKey + NoteEncryption.encode(NoteSelect.active.$data()));
             }
-            if (e.key === 'Escape')
+            if (e.key === 'Escape') {
                 NoteSelect.unselect();
+            }
             if (e.key === 'Backspace') {
                 if (confirm('Are you sure you want to delete this note?')) {
                     NoteSelect.active.$delete();
@@ -63,7 +64,6 @@ export const NoteSelect = {
             text = text.replace(NoteSelect.copyKey, '');
             e.preventDefault();
             const data = NoteEncryption.decode(text);
-            console.log('GOT THE DATA FROM THE CLIPBOARD: ', data);
             switch (data.type) {
                 case 'Textbox':
                     NoteSelect.active = new Textbox(data.parameters, data.content);
@@ -113,7 +113,6 @@ export const NoteSelect = {
     updateSelectBox: () => {
         if (!NoteSelect.active)
             return;
-        console.log('Updating select box');
         const selectBox = document.getElementById('Noteworthy-selectBox');
         const boundaries = NoteSelect.active.$getBoundingBox();
         if (selectBox) {

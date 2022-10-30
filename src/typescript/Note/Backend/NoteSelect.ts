@@ -8,6 +8,7 @@ import { NoteStorage } from './NoteStorage.js';
 import { Rect } from '../Derived/Rect.js';
 import { Circle } from '../Derived/Circle.js';
 import { Line } from '../Derived/Line.js';
+import { createNote } from 'src/typescript/Create/CreateNote.js';
 
 const selectBoxHandleHTML = `
     <div class="Noteworthy-selectBox-handle handle-r_line"></div>
@@ -33,7 +34,7 @@ export const NoteSelect = {
 
 	init: () => {
 		document.addEventListener('click', (e: MouseEvent) => {
-			if (!(<Element>e.target).closest('#NoteWorthyOfficial')) NoteSelect.unselect();
+			if (e.target !== document.querySelector("#NoteWorthyOfficial-MainContainer *") || !(<Element>e.target).closest('#NoteWorthyOfficial')) NoteSelect.unselect();
 		});
 
 		document.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -48,7 +49,9 @@ export const NoteSelect = {
 					NoteSelect.copyKey + NoteEncryption.encode(NoteSelect.active.$data())
 				);
 			}
-			if (e.key === 'Escape') NoteSelect.unselect();
+			if (e.key === 'Escape') {
+				NoteSelect.unselect();
+			}
 			if (e.key === 'Backspace') {
 				if (confirm('Are you sure you want to delete this note?')) {
 					NoteSelect.active.$delete();
@@ -57,7 +60,6 @@ export const NoteSelect = {
 			}
 		});
 
-		//add event listener to paste event
 		document.addEventListener('paste', (e: ClipboardEvent) => {
 			if (!NoteSelect.enabled) return;
 			if (NoteSelect.active instanceof Textbox && NoteSelect.active.$isFocusedEditor()) return;
@@ -67,7 +69,6 @@ export const NoteSelect = {
 			text = text.replace(NoteSelect.copyKey, '');
 			e.preventDefault();
 			const data = NoteEncryption.decode(text);
-			console.log('GOT THE DATA FROM THE CLIPBOARD: ', data);
 			switch (data.type) {
 				case 'Textbox':
 					NoteSelect.active = new Textbox(data.parameters, data.content);
@@ -117,7 +118,6 @@ export const NoteSelect = {
 
 	updateSelectBox: () => {
 		if (!NoteSelect.active) return;
-		console.log('Updating select box');
 		const selectBox = document.getElementById('Noteworthy-selectBox');
 		const boundaries = NoteSelect.active.$getBoundingBox();
 		if (selectBox) {

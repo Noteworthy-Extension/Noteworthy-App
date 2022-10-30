@@ -65,7 +65,7 @@ const bundleExtension = () => {
 		.pipe(replace(matchImports, ''))
 		.pipe(replace(matchExports, ''))
 		.pipe(replace(matchUseStrict, ''))
-		.pipe(replace(matchConsoleLogs, '')) //Todo: turn on to remove console.logs
+		.pipe(replace(matchConsoleLogs, ''))
 		.pipe(replace(matchStyle, fs.readFileSync('dist/css/Style.css')))
 		.pipe(dest('../Noteworthy-Extension/dist/assets/js'));
 };

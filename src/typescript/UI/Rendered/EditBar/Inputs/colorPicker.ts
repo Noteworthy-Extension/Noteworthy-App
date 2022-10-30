@@ -1,6 +1,5 @@
 export const colorPicker = {
 	init: (label: string, value: string, fn: (newVal: string) => void) => {
-		console.log('VALUE: ', value);
 		const activeColor = document.querySelector(
 			`#${label}.color_picker [style*="background-color: ${value}"].color_picker-color`
 		);
@@ -14,7 +13,6 @@ export const colorPicker = {
 					.forEach(element => element.classList.remove('active'));
 				element.classList.add('active');
 				// document.querySelector(`#${label}.color_picker`)?.dispatchEvent(new CustomEvent('newVal', {detail: element.style.backgroundColor}));
-				console.log('newVal', element.style.backgroundColor);
 				(<HTMLElement>(
 					document.querySelector(`#${label}.open_color_picker .color_picker-color_display`)
 				)).style.backgroundColor = element.style.backgroundColor;
@@ -35,7 +33,6 @@ export const colorPicker = {
 			const activeColor = document.querySelector(
 				`#${label}.color_picker [style*="background-color: ${color}"].color_picker-color`
 			);
-			console.log('activeColor', activeColor);
 			if (activeColor) activeColor.classList.add('active');
 			fn(color);
 		});

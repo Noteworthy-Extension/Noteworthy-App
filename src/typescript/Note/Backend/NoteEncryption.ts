@@ -1,20 +1,10 @@
 import { NoteStorage } from "./NoteStorage.js";
 
 export const NoteEncryption = {
-	encryptingKey: '❚', //Key to encrypt parameters with, aka the spacer in between values, this should be something that no parameters might have
+	encryptingKey: '❘',
 
 	encryptingTranslationChars: {
-		'1': '❚',
-		'2': '❙',
-		'3': '❘',
-		'4': '❗',
-		'5': '❖',
-		'6': '❕',
-		'7': '❔',
-		'8': '❓',
-		'9': '❒',
-		'0': '❑',
-		' ': '❐',
+		
 	},
 
 	encrypt: (

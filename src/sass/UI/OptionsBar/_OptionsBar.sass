@@ -2,6 +2,10 @@
 $bigBlur: 10px
 $mediumBlur: 5px
 $noBlur: 0px
+
+$activeColor: grayscale(0) invert(0) brightness(1) drop-shadow(0 0 1rem rgba(50,50,50,0.4))
+$nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
+// $nonActiveColor: grayscale(100%) invert(100%) brightness(0.3)
 #NoteWorthyOfficial
   .Noteworthy_options_bar //Main options bar, contains everything related to it
     display: flex
@@ -25,19 +29,19 @@ $noBlur: 0px
       flex-direction: column !important
 
       .Noteworthy_options_bar-dropdown.visibility_dropdown
-        transform: translateY(400px)
+        transform: translateY(390px)
 
       .Noteworthy_options_bar-dropdown.rect_dropdown
-        transform: translateY(305px)
+        transform: translateY(339px)
 
       .Noteworthy_options_bar-dropdown.arrow_dropdown
-        transform: translateY(203px)
+        transform: translateY(187px)
 
       .Noteworthy_options_bar-dropdown.line_dropdown
         transform: translateY(145px)
 
       .Noteworthy_options_bar-dropdown.draw_dropdown
-        transform: translateY(95px)
+        transform: translateY(97.5px)
 
     &-alignY-bottom //should open up
       flex-direction: column-reverse !important
@@ -49,16 +53,16 @@ $noBlur: 0px
         transform: translateY(-400px)
 
       .Noteworthy_options_bar-dropdown.rect_dropdown
-        transform: translateY(-300px)
+        transform: translateY(-335px)
 
       .Noteworthy_options_bar-dropdown.arrow_dropdown
-        transform: translateY(-200px)
+        transform: translateY(-185px)
 
       .Noteworthy_options_bar-dropdown.line_dropdown
-        transform: translateY(-145px)
+        transform: translateY(-138px)
 
       .Noteworthy_options_bar-dropdown.draw_dropdown
-        transform: translateY(-95px)
+        transform: translateY(-93px)
 
     div
       display: none
@@ -113,13 +117,13 @@ $noBlur: 0px
 
     &-btn //Button to toggle options bar
       background-color: #f4f4f4
-      // border: 1px solid rgba(0, 0, 0, 0.15)
+      border: 1px solid rgba(0, 0, 0, 0.15)
       backdrop-filter: blur($noBlur)
-      box-shadow: 2px 3px 8px 2px rgba(0,0,0,0.10)
+      // box-shadow: 2px 3px 8px 2px rgba(0,0,0,0.10)
       cursor: pointer
 
       width: 45px
-      margin-left: 2px
+      margin-left: 0.5px
       aspect-ratio: 1/1
       flex: 0 0 100%
 
@@ -132,27 +136,27 @@ $noBlur: 0px
 
       // transition: border-radius 600ms ease-in-out, background-color 500ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out
 
-      span //The X that turn to a plus
-        display: block
-        position: absolute
+      // span //The X that turn to a plus
+      //   display: block
+      //   position: absolute
 
-        background-color: black
-        width: 24px
-        height: 3px
-        border-radius: 1px
-        transition: 400ms ease-in-out
+      //   background-color: black
+      //   width: 24px
+      //   height: 3px
+      //   border-radius: 1px
+      //   transition: 400ms ease-in-out
 
-        &:nth-child(1)
-          transform: rotate(90deg)
+      //   &:nth-child(1)
+      //     transform: rotate(90deg)
 
-      &-active
-        backdrop-filter: blur($noBlur)
+      // &-active
+      //   backdrop-filter: blur($noBlur)
 
-        span:nth-child(1)
-          transform: rotate(45deg * 7)
+      //   span:nth-child(1)
+      //     transform: rotate(45deg * 7)
 
-        span:nth-child(2)
-          transform: rotate(-45deg * 7)
+      //   span:nth-child(2)
+      //     transform: rotate(-45deg * 7)
 
     &-item // Options bar item that don't have sub options
       display: flex
@@ -168,20 +172,24 @@ $noBlur: 0px
       height: 40px
 
       border-radius: 0.25rem
-      border: 3px solid transparent
+      border: 1px solid transparent
 
-      transition: border-radius 600ms ease-in-out, background-color 250ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out
+      // transition: border-radius 600ms ease-in-out, background-color 250ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out
 
       & > img[class*='Noteworthy_options_bar']
         transition: transform 200ms ease-in-out, filter 200ms ease-in-out
-        filter: grayscale(100%) invert(100%) brightness(0.5)
+        filter: $nonActiveColor
 
       &:hover > img[class*='Noteworthy_options_bar']
-        transform: scale(105%)
+        transform: scale(0.95)
+
+      // &.active_option
+      //   background-color: $activeBackdrop !important
 
       &.active_option > img[class*='Noteworthy_options_bar'] //When a non parent to a dropdown is active
-        // filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='invert'> <feColorMatrix type=matrix values=' 0.000 0.000 0.000 0.000 0.000 0.000 0.500 0.000 0.000 0.000 0.000 0.000 10.00 0.000 0.500 0.000 0.000 0.000 1.000 0.000' /> </filter></svg>#invert")
-        $theme: rbg(95, 209, 224)
+        filter: $activeColor
+        transform: scale(1.2)
+
 
     &-items // The dropdown button that expands with suboptions
       position: fixed
@@ -189,7 +197,6 @@ $noBlur: 0px
       justify-content: center
       align-items: center
       flex-direction: column
-      background-color: red
       height: max-content
       padding: 0.25rem
 
@@ -223,11 +230,16 @@ $noBlur: 0px
       display: flex
       justify-content: center
       align-items: center
-      filter: grayscale(100%) invert(100%) brightness(0.5)
+      filter: $nonActiveColor
       transition: transform 200ms ease-in-out, filter 200ms ease-in-out
 
+      &:hover
+        filter: $activeColor
+        transform: scale(0.85)
+
       &.active_option //The subitem that is active
-        filter: grayscale(0) invert(0) brightness(1)
+        filter:$activeColor
+        transform: scale(1.2)
 
   .visibility_dropdown
     display: none !important

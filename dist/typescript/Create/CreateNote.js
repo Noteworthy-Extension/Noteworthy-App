@@ -25,6 +25,7 @@ const createData = {
     },
     defaultparam: {
         line: {
+            opacity: 100,
             color: '#000000',
             width: 2,
             markers: {
@@ -43,7 +44,7 @@ const createData = {
     },
     param: {
         line: {
-            opacity: 2,
+            opacity: 1,
             color: '#000000',
             width: 2,
             markers: {
@@ -64,13 +65,13 @@ const createData = {
 };
 export const createNote = {
     escapeCreate: () => {
-        if (activeElement === null)
+        if (!activeElement)
             return;
         activeElement.$delete();
         activeElement = null;
     },
     finishCreate: (pointer = false) => {
-        if (activeElement === null)
+        if (!activeElement)
             return;
         activeElement.$save();
         activeElement = null;
@@ -310,8 +311,14 @@ export const createNote = {
         document.addEventListener('keydown', (e) => {
             if (!Object.values(createData.enabled).includes(true))
                 return;
-            if (!activeElement)
+            if (!activeElement) {
+                if ((e.key === 'Escape')) {
+                    console.log('cancel');
+                    createNote.disableAll();
+                    OptionsBar.setActive("option-select");
+                }
                 return;
+            }
             if (e.key === 'Escape')
                 createNote.escapeCreate();
             if (e.key === 'Enter')
@@ -426,6 +433,14 @@ export const createNote = {
             },
             {
                 type: 'select',
+                label: 'opacity',
+                value: createData.param.line.opacity,
+                fn: newVal => {
+                    createData.param.line.opacity = parseFloat(newVal.toString());
+                },
+            },
+            {
+                type: 'select',
                 label: 'line-Start',
                 value: createData.param.line.markers.start,
                 fn: newVal => {
@@ -472,6 +487,14 @@ export const createNote = {
             },
             {
                 type: 'select',
+                label: 'opacity',
+                value: createData.param.line.opacity,
+                fn: newVal => {
+                    createData.param.line.opacity = parseFloat(newVal.toString());
+                },
+            },
+            {
+                type: 'select',
                 label: 'line-Start',
                 value: createData.param.line.markers.start,
                 fn: newVal => {
@@ -502,9 +525,52 @@ export const createNote = {
             case 'highlight':
                 createData.param.line.width = 15;
                 createData.param.line.color = '#ffff00';
-                createData.param.line.opacity = 0.4;
+                createData.param.line.opacity = 50;
                 break;
             default:
         }
+        const inputs = [
+            {
+                type: 'color',
+                label: 'stroke',
+                value: createData.param.line.color,
+                fn: newVal => {
+                    createData.param.shape.stroke = newVal.toString();
+                },
+            },
+            {
+                type: 'select',
+                label: 'width',
+                value: createData.param.line.width,
+                fn: newVal => {
+                    createData.param.shape.width = parseInt(newVal.toString());
+                },
+            },
+            {
+                type: 'select',
+                label: 'opacity',
+                value: createData.param.line.opacity,
+                fn: newVal => {
+                    createData.param.line.opacity = parseFloat(newVal.toString());
+                },
+            },
+            {
+                type: 'select',
+                label: 'line-Start',
+                value: createData.param.line.markers.start,
+                fn: newVal => {
+                    createData.param.line.markers.start = newVal.toString();
+                },
+            },
+            {
+                type: 'select',
+                label: 'line-End',
+                value: createData.param.line.markers.end,
+                fn: newVal => {
+                    createData.param.line.markers.end = newVal.toString();
+                },
+            },
+        ];
+        EditBar.loadInputs(inputs);
     },
 };

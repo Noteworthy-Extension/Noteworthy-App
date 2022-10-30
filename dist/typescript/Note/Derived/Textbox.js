@@ -111,11 +111,11 @@ export class Textbox extends Note {
                     },
                     theme: 'snow',
                 });
-                editor.setText(this.values.content);
+                editor.setContents(JSON.parse(this.values.content));
                 const thisRef = this;
                 editor.on('text-change', (_delta, _oldDelta, source) => {
-                    console.log(editor.getText());
-                    thisRef.$text(editor.getText());
+                    console.log(JSON.stringify(editor.getContents()));
+                    thisRef.$text(JSON.stringify(editor.getContents()));
                     thisRef.$save();
                 });
                 this.editor = editor;

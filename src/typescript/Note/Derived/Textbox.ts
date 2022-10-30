@@ -151,14 +151,14 @@ export class Textbox extends Note {
 				},
 				theme: 'snow',
 			});
-			editor.setText(this.values.content);
+			editor.setContents(JSON.parse(this.values.content));
 			//skipcq: JS-0342
 			const thisRef = this;
 			// Todo: Remove _'s; I set typescript to a stricter setting so it won't allow unused variables
 			editor.on('text-change', (_delta: any, _oldDelta: any, source: string) => {
-				console.log(editor.getText());
+				console.log(JSON.stringify(editor.getContents()));
 
-				thisRef.$text(editor.getText());
+				thisRef.$text(JSON.stringify(editor.getContents()));
 				thisRef.$save();
 			});
 			this.editor = editor;

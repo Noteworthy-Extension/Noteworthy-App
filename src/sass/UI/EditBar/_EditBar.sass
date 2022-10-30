@@ -1,8 +1,11 @@
+@use '../OptionsBar/OptionsBar' as *
 @mixin removeQuillItem($screenSize, $item)
     @media (min-width: $screenSize)
         .quillEditor-#{$item}
             display: none
 
+// $activeColor: grayscale(0) invert(0) brightness(1) drop-shadow(0 0 1rem rgba(50,50,50,0.4))
+// $nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
 #NoteWorthyOfficial
     .Noteworthy-edit_bar
         position: fixed
@@ -72,15 +75,16 @@
 
                 & > img
                     transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out
-                    filter: grayscale(100%) invert(100%) brightness(0.5)
+                    filter: $nonActiveColor
                     width: 25px
                     aspect-ratio: 1/1
 
                 &:hover > img
-                    transform: scale(1.1)
+                    transform: scale(0.85)
 
                 &.active > img
-                    filter: grayscale(0%) invert(0%) brightness(1)
+                    transform: scale(1.2)
+                    filter: $activeColor
 
                 &:hover::after //editbar tooltips
                     content: attr(data-tooltip)

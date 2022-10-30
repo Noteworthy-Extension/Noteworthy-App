@@ -110,7 +110,6 @@ export class Line extends Note {
             const note = document.getElementById(this.$raw_id() + this.values.hitID);
             note.addEventListener('mousedown', (e) => {
                 e.stopImmediatePropagation();
-                console.log('mousedown');
                 if (!NoteSelect.enabled)
                     return;
                 this.dragData.isDragging = true;
@@ -211,7 +210,6 @@ export class Line extends Note {
             assignParam(this.valueIndex.markers.start, this.values.markers.start);
             assignParam(this.valueIndex.markers.end, this.values.markers.end);
             assignParam(this.valueIndex.pattern, this.values.pattern);
-            console.log('Compressed Parameters: ', compressedParameters);
             const data = {
                 type: this.noteType,
                 parameters: compressedParameters,
@@ -273,24 +271,20 @@ export class Line extends Note {
             this.$setPoints();
         };
         this.$size = (size = { width: 0, height: 0 }, add_size = { width: 0, height: 0 }, pos = { width: false, height: false }) => {
-            console.log(add_size);
             const maxX = Math.max(...this.values.points.map(point => point.x));
             const maxY = Math.max(...this.values.points.map(point => point.y));
             const min = {
                 x: Math.min(...this.values.points.map(point => point.x)),
                 y: Math.min(...this.values.points.map(point => point.y)),
             };
-            console.log(maxX, maxY);
             const ratioX = add_size.width != 0 ? (maxX + add_size.width) / maxX : 1;
             const ratioY = add_size.height != 0 ? (maxY + add_size.height) / maxY : 1;
-            console.log(ratioX, ratioY);
             this.values.points = this.values.points.map(point => {
                 return {
                     x: point.x * ratioX - (maxX * ratioX - maxX),
                     y: point.y * ratioY - (maxY * ratioY - maxY),
                 };
             });
-            console.log(this.values.points);
             const newMin = {
                 x: Math.min(...this.values.points.map(point => point.x)),
                 y: Math.min(...this.values.points.map(point => point.y)),
@@ -368,6 +362,15 @@ export class Line extends Note {
 			stroke-width: ${this.values.width + this.values.buffer};
 		`);
             return line;
+        };
+        this.$updateID = () => {
+            const noteElement = document.getElementById(this.$raw_id());
+            const noteElement2 = document.getElementById(this.$raw_id() + this.values.hitID);
+            this.noteID = `${this.noteType}-${this.noteIndex}`;
+            if (noteElement)
+                noteElement.setAttribute('id', this.noteID);
+            if (noteElement2)
+                noteElement2.setAttribute('id', this.noteID + this.values.hitID);
         };
         this.$init_selectable = () => {
             const note = document.getElementById(this.$raw_id());

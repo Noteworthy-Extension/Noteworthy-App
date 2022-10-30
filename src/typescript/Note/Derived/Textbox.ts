@@ -331,7 +331,7 @@ export class Textbox extends Note {
 	public readonly $save = (recordHistory = true): void => {
 		const noteData = NoteEncryption.encode(this.$data());
 
-		if(NoteSelect.active == this) NoteSelect.updateSelectBox();
+		if (NoteSelect.active == this) NoteSelect.updateSelectBox();
 
 		if (this.noteIndex === 0) {
 			this.noteIndex = NoteStorage.saveNote(noteData);
@@ -440,7 +440,6 @@ export class Textbox extends Note {
 				border: ${this.values.width}px solid ${this.values.stroke};
 				border-radius: ${this.values.radius}px;
 				padding: 0;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 			">
 				${this.values.content}
 			</div>
@@ -464,7 +463,7 @@ export class Textbox extends Note {
 		note.addEventListener(
 			'pointerdown',
 			() => {
-				if(NoteSelect.active !== this) this.$enableEditor(false);
+				if (NoteSelect.active !== this) this.$enableEditor(false);
 				console.log('Active: ', NoteSelect.active == this);
 				NoteSelect.select(this);
 			},

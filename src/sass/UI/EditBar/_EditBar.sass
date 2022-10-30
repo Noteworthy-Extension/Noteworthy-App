@@ -72,6 +72,7 @@
 
                 & > img
                     transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out
+                    filter: grayscale(100%) invert(100%) brightness(0.5)
                     width: 25px
                     aspect-ratio: 1/1
 
@@ -79,7 +80,7 @@
                     transform: scale(1.1)
 
                 &.active > img
-                    filter: invert(50%)
+                    filter: grayscale(0%) invert(0%) brightness(1)
 
                 &:hover::after //editbar tooltips
                     content: attr(data-tooltip)

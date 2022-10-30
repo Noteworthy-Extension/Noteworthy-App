@@ -5,7 +5,7 @@ import { iconURLS } from './../DropdownSVGs.js';
 import { NoteSelect } from '../../../Note/Backend/NoteSelect.js';
 import { EditBar } from '../EditBar/EditBar.js';
 const optionsBarHTML = `
-<div class="Noteworthy_options_bar" style="position: fixed; display: none;">
+<div class="Noteworthy_options_bar Noteworthy_options_bar-open" style="position: fixed; display: none;">
 	<div class="Noteworthy_options_bar-blur"></div>
 	<button class="Noteworthy_options_bar-btn">
 		<span></span>
@@ -99,6 +99,16 @@ const optionsBarHTML = `
 		</div>
 	</div>
 
+	<div class="Noteworthy_options_bar-item parent-dropdown Noteworthy_tooltip" id="option-visibility">
+		<span class="tool_tip_text flow_right">Visibility</span>
+		<img src="${iconURLS.visibility}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+	</div>
+
+	<div class="Noteworthy_options_bar-dropdown visibility_dropdown">
+		<input type="range" min="0" max="100" value="100" id="Noteworthy-visibility_slider" />
+	</div>
+
+
 </div>
 
 <svg width="0" height="0" style="pointer-events: none;">
@@ -161,6 +171,14 @@ export const OptionsBar = {
         localStorage.setItem(`${NoteStorage.prefix}${location.pathname}:optionsBarPos`, JSON.stringify(OptionsBar.pos));
         localStorage.setItem(`${NoteStorage.prefix}${location.pathname}:optionsBarFixed`, JSON.stringify(OptionsBar.position.fixed));
     },
+    loadVisibility: () => {
+        const opacity = parseInt(localStorage.getItem(`${NoteStorage.prefix}${location.pathname}:optionsBarOpacity`) || '100');
+        (document.querySelector('#NoteWorthyOfficial-MainContainer')).style.opacity = `${opacity}%`;
+        document.querySelector('#Noteworthy-visibility_slider').value = `${opacity}`;
+    },
+    saveVisibility: (opacity = document.querySelector('#Noteworthy-visibility_slider').value) => {
+        localStorage.setItem(`${NoteStorage.prefix}${location.pathname}:optionsBarOpacity`, `${parseInt(opacity)}`);
+    },
     initToggle: () => {
         const optionsBar = document.querySelector('.Noteworthy_options_bar');
         const mainContainer = document.querySelector('#NoteWorthyOfficial-MainContainer');
@@ -173,7 +191,6 @@ export const OptionsBar = {
             else {
                 optionsBar.style.display = 'none';
                 NoteSelect.enabled = false;
-                mainContainer.style.pointerEvents = 'auto';
                 mainContainer.classList.add('MainContainer-Deactive');
             }
         });
@@ -204,10 +221,15 @@ export const OptionsBar = {
                 const id = option.parentElement?.previousElementSibling?.id.split(' ')[0] || '';
                 const dropdown_id = option.id.split(' ')[0] || '';
                 OptionsBar.setActive(id);
-                console.log(option.id);
                 OptionsBar.setSubActive(dropdown_id);
                 OptionsBar.setOption(option.parentElement?.previousElementSibling?.id || 'option-select');
             });
+        });
+        OptionsBar.loadVisibility();
+        const slider = document.querySelector('#Noteworthy-visibility_slider');
+        slider.addEventListener('change', () => {
+            (document.querySelector('#NoteWorthyOfficial-MainContainer')).style.opacity = `${slider.value}%`;
+            OptionsBar.saveVisibility(slider.value);
         });
     },
     position: {
@@ -259,11 +281,9 @@ export const OptionsBar = {
             align(OptionsBar.position.fixed.x, OptionsBar.position.fixed.y);
             if (OptionsBar.position.fixed.x !== fixedBefore.x)
                 xPos = screenWidth - xPos - OptionsBar.offset.width;
-            console.log('Changed Y? ', OptionsBar.position.fixed.y, fixedBefore.y);
             if (OptionsBar.position.fixed.y !== fixedBefore.y) {
                 yPos = screenHeight - yPos - OptionsBar.offset.height;
             }
-            console.log(OptionsBar.position.fixed.x, OptionsBar.position.fixed.y);
             OptionsBar.pos = {
                 x: xPos,
                 y: yPos,
@@ -281,12 +301,10 @@ export const OptionsBar = {
             }
             if (yPos >= 0 && yPos <= screenHeight) {
                 if (OptionsBar.position.fixed.y === 'top') {
-                    console.log('Top');
                     optionsBar.style.top = `${yPos}px`;
                     optionsBar.style.bottom = '';
                 }
                 else {
-                    console.log('Bottom');
                     optionsBar.style.bottom = `${yPos}px`;
                     optionsBar.style.top = '';
                 }
@@ -332,15 +350,12 @@ export const OptionsBar = {
     toggleDropdownItem: () => {
         const parentDropdown = document.querySelectorAll('.parent-dropdown');
         parentDropdown.forEach((item) => {
-            console.log(item);
             item.addEventListener('click', () => {
-                console.log('clicked');
                 item.classList.toggle('Noteworthy_options_bar-dropdown-item-open');
             });
         });
     },
     setOption: (option_id) => {
-        console.log(option_id);
         createNote.disableAll();
         EditBar.hide();
         EditBar.clear();
@@ -350,7 +365,6 @@ export const OptionsBar = {
             .replaceAll(optionPrefix[1], '')
             .replaceAll(optionPrefix[0], '')
             .split(' ');
-        console.log('Options Id: ', item_id);
         switch (item_id[0]) {
             case 'select':
                 createNote.disableAll();
@@ -417,7 +431,6 @@ export const OptionsBar = {
     },
     setSubActive: (suboption_id) => {
         const suboptionElement = document.querySelector(`#${suboption_id}.Noteworthy_options_bar-subitem`);
-        console.log('Suboption id: ', suboption_id);
         suboptionElement.parentElement?.previousElementSibling?.setAttribute('id', suboptionElement.parentElement?.previousElementSibling?.id.split(' ')[0] + ' ' + suboption_id);
         const options = suboptionElement.parentElement?.querySelectorAll('.Noteworthy_options_bar-subitem');
         options.forEach(option => option.classList.remove('active_option'));

@@ -36,7 +36,7 @@ const createData = {
             rotation: 0,
             fill: 'rgba(0, 0, 0, 0)',
             stroke: 'none',
-            width: 1,
+            width: 2,
             radius: 0,
         },
     },
@@ -44,7 +44,7 @@ const createData = {
         line: {
             opacity: 2,
             color: '#000000',
-            width: 1,
+            width: 2,
             markers: {
                 start: 'none',
                 end: 'none',
@@ -56,28 +56,30 @@ const createData = {
             rotation: 0,
             fill: 'rgba(0, 0, 0, 0)',
             stroke: 'none',
-            width: 1,
+            width: 2,
             radius: 0,
         },
     },
 };
 export const createNote = {
     escapeCreate: () => {
-        if (activeElement) {
-            activeElement.$delete();
-            activeElement = null;
-        }
+        if (activeElement === null)
+            return;
+        activeElement.$delete();
+        activeElement = null;
     },
-    finishCreate: () => {
-        if (activeElement) {
-            activeElement.$save();
-            activeElement = null;
-        }
+    finishCreate: (pointer = false) => {
+        if (activeElement === null)
+            return;
+        activeElement.$save();
+        activeElement = null;
+        if (pointer)
+            createNote.disableAll();
     },
     checkBoundary: (e) => {
         if (e.target === document.querySelectorAll('#NoteWorthyOfficial > .Noteworthy_options_bar') ||
-            e.target.closest('.Noteworthy_options_bar')
-            || e.target === document.querySelectorAll('#NoteWorthyOfficial > .Noteworthy-edit_bar') ||
+            e.target.closest('.Noteworthy_options_bar') ||
+            e.target === document.querySelectorAll('#NoteWorthyOfficial > .Noteworthy-edit_bar') ||
             e.target.closest('.Noteworthy-edit_bar'))
             return true;
         else
@@ -97,6 +99,7 @@ export const createNote = {
             };
             switch (createData.active.shape) {
                 case 'textbox':
+                case 'text':
                     activeElement = new Textbox([
                         createData.firstPos.x,
                         createData.firstPos.y,
@@ -142,7 +145,7 @@ export const createNote = {
         document.addEventListener('mouseup', () => {
             if (!createData.enabled.shape)
                 return;
-            createNote.finishCreate();
+            createNote.finishCreate(true);
             createNote.disableAll();
         });
         document.addEventListener('mousemove', (e) => {
@@ -210,7 +213,7 @@ export const createNote = {
         document.addEventListener('mouseup', () => {
             if (!createData.enabled.line)
                 return;
-            createNote.finishCreate();
+            createNote.finishCreate(true);
         });
         document.addEventListener('mousemove', (e) => {
             if (!createData.enabled.line)
@@ -260,7 +263,7 @@ export const createNote = {
         document.addEventListener('dblclick', () => {
             if (!createData.enabled.polyline)
                 return;
-            createNote.finishCreate();
+            createNote.finishCreate(true);
         });
     },
     initDraw: () => {
@@ -327,11 +330,10 @@ export const createNote = {
         createData.enabled.shape = true;
         switch (createData.active.shape) {
             case 'textbox':
-                createData.param.shape.fill = 'rgb(0, 0, 0, 0)';
+                createData.param.shape.fill = 'rgb(255, 255, 255)';
                 break;
             case 'text':
                 createData.param.shape.fill = 'rgb(0, 0, 0, 0)';
-                createData.param.shape.stroke = 'rgb(0, 0, 0, 0)';
                 break;
             case 'circle':
             case 'square':
@@ -373,6 +375,7 @@ export const createNote = {
         ];
         switch (createData.active.shape) {
             case 'textbox':
+            case 'text':
             case 'square':
             case 'rect':
                 inputs.push({
@@ -395,7 +398,7 @@ export const createNote = {
     enableLine: (line) => {
         createData.active.line = line;
         createData.enabled.line = true;
-        console.log("CREATING LINE: ", createData.active.line);
+        console.log('CREATING LINE: ', createData.active.line);
         switch (createData.active.line) {
             case 'line':
                 break;

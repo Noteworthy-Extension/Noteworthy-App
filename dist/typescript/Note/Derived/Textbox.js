@@ -366,7 +366,6 @@ export class Textbox extends Note {
 				border: ${this.values.width}px solid ${this.values.stroke};
 				border-radius: ${this.values.radius}px;
 				padding: 0;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 			">
 				${this.values.content}
 			</div>

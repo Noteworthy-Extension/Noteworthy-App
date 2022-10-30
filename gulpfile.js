@@ -43,16 +43,18 @@ const matchStyle = new RegExp(/%NoteWorthyOfficial_stylecode%/gm);
 const matchConsoleLogs = new RegExp(/console.log\([A-Za-z0-9_.,$]*\);/gim);
 
 const miniBundle = () => {
-	return src(JsFiles)
-		.pipe(gulpIgnore.exclude('**/Inject.js'))
-		.pipe(minifyJs())
-		.pipe(concat('main.min.js'))
-		.pipe(replace(matchImports, ''))
-		.pipe(replace(matchExports, ''))
-		.pipe(replace(matchUseStrict, ''))
-		// .pipe(replace(matchConsoleLogs, '')) Todo: turn on to remove console.logs
-		.pipe(replace(matchStyle, fs.readFileSync('dist/css/Style.css')))
-		.pipe(dest('dist/js'));
+	return (
+		src(JsFiles)
+			.pipe(gulpIgnore.exclude('**/Inject.js'))
+			.pipe(minifyJs())
+			.pipe(concat('main.min.js'))
+			.pipe(replace(matchImports, ''))
+			.pipe(replace(matchExports, ''))
+			.pipe(replace(matchUseStrict, ''))
+			// .pipe(replace(matchConsoleLogs, '')) Todo: turn on to remove console.logs
+			.pipe(replace(matchStyle, fs.readFileSync('dist/css/Style.css')))
+			.pipe(dest('dist/js'))
+	);
 };
 
 const bundleExtension = () => {
@@ -63,21 +65,23 @@ const bundleExtension = () => {
 		.pipe(replace(matchImports, ''))
 		.pipe(replace(matchExports, ''))
 		.pipe(replace(matchUseStrict, ''))
-		// .pipe(replace(matchConsoleLogs, '')) Todo: turn on to remove console.logs
+		.pipe(replace(matchConsoleLogs, '')) //Todo: turn on to remove console.logs
 		.pipe(replace(matchStyle, fs.readFileSync('dist/css/Style.css')))
 		.pipe(dest('../Noteworthy-Extension/dist/assets/js'));
 };
 
 const bundle = () => {
-	return src(JsFiles)
-		.pipe(gulpIgnore.exclude('**/Inject.js'))
-		.pipe(concat('main.js'))
-		.pipe(replace(matchImports, ''))
-		.pipe(replace(matchUseStrict, ''))
-		.pipe(replace(matchExports, ''))
-		// .pipe(replace(matchConsoleLogs, '')) Todo: turn on to remove console.logs
-		.pipe(replace(matchStyle, fs.readFileSync('dist/css/Style.css')))
-		.pipe(dest('dist/js'));
+	return (
+		src(JsFiles)
+			.pipe(gulpIgnore.exclude('**/Inject.js'))
+			.pipe(concat('main.js'))
+			.pipe(replace(matchImports, ''))
+			.pipe(replace(matchUseStrict, ''))
+			.pipe(replace(matchExports, ''))
+			// .pipe(replace(matchConsoleLogs, '')) Todo: turn on to remove console.logs
+			.pipe(replace(matchStyle, fs.readFileSync('dist/css/Style.css')))
+			.pipe(dest('dist/js'))
+	);
 };
 
 const watchJs = () => watch(AllFiles, miniBundle);

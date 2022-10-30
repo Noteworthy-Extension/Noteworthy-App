@@ -256,7 +256,7 @@ export class Textbox extends Note {
 		//Runs methods that initialiaze that note without giving access to the user.
 		this.$init_draggable();
 		this.$init_selectable();
-		this.$init_editor();
+		if(this.noteIndex != 0) this.$init_editor();
 		this.$save();
 	};
 
@@ -336,6 +336,7 @@ export class Textbox extends Note {
 		if (this.noteIndex === 0) {
 			this.noteIndex = NoteStorage.saveNote(noteData);
 			this.$updateID();
+			this.$init_editor();
 			this.$save();
 			return;
 		} else {
@@ -448,10 +449,10 @@ export class Textbox extends Note {
 
 	protected readonly $updateID = (): void => {
 		const noteElement = document.getElementById(this.$raw_id());
-		const toolbar = document.getElementById(this.$raw_id() + '-toolbar');
+		// const toolbar = document.getElementById(this.$raw_id() + '-toolbar');
 		this.noteID = `${this.noteType}-${this.noteIndex}`;
 		if (noteElement) noteElement.setAttribute('id', this.noteID);
-		if (toolbar) toolbar.setAttribute('id', this.noteID + '-toolbar');
+		// if (toolbar) toolbar.setAttribute('id', this.noteID + '-toolbar');
 	};
 
 	$getBoundingBox() {

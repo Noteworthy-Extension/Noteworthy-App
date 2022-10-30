@@ -202,7 +202,8 @@ export class Textbox extends Note {
             document.querySelector(this.mainContainer)?.insertAdjacentHTML('beforeend', this.$getHTML());
             this.$init_draggable();
             this.$init_selectable();
-            this.$init_editor();
+            if (this.noteIndex != 0)
+                this.$init_editor();
             this.$save();
         };
         this.$getInputs = () => {
@@ -274,6 +275,7 @@ export class Textbox extends Note {
             if (this.noteIndex === 0) {
                 this.noteIndex = NoteStorage.saveNote(noteData);
                 this.$updateID();
+                this.$init_editor();
                 this.$save();
                 return;
             }
@@ -373,12 +375,9 @@ export class Textbox extends Note {
         };
         this.$updateID = () => {
             const noteElement = document.getElementById(this.$raw_id());
-            const toolbar = document.getElementById(this.$raw_id() + '-toolbar');
             this.noteID = `${this.noteType}-${this.noteIndex}`;
             if (noteElement)
                 noteElement.setAttribute('id', this.noteID);
-            if (toolbar)
-                toolbar.setAttribute('id', this.noteID + '-toolbar');
         };
         this.$init_selectable = () => {
             const note = document.getElementById(this.$raw_id());

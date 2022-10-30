@@ -4,6 +4,7 @@ import { Rect } from '../Note/Derived/Rect.js';
 import { Textbox } from '../Note/Derived/Textbox.js';
 import { EditBar } from '../UI/Rendered/EditBar/EditBar.js';
 import type { inputsListType } from '../UI/Rendered/EditBar/EditBar.js';
+import { OptionsBar } from '../UI/Rendered/OptionsBar/OptionsBar.js';
 
 let activeElement: null | Textbox | Rect | Circle | Line;
 
@@ -76,7 +77,7 @@ export const createNote = {
 		if (activeElement === null) return;
 		activeElement.$save();
 		activeElement = null;
-		if (pointer) createNote.disableAll();
+		if (pointer) OptionsBar.setActive("option-select");
 	},
 
 	checkBoundary: (e: any): boolean => {

@@ -3,6 +3,7 @@ import { Line } from '../Note/Derived/Line.js';
 import { Rect } from '../Note/Derived/Rect.js';
 import { Textbox } from '../Note/Derived/Textbox.js';
 import { EditBar } from '../UI/Rendered/EditBar/EditBar.js';
+import { OptionsBar } from '../UI/Rendered/OptionsBar/OptionsBar.js';
 let activeElement;
 const createData = {
     createEnabled: true,
@@ -74,7 +75,7 @@ export const createNote = {
         activeElement.$save();
         activeElement = null;
         if (pointer)
-            createNote.disableAll();
+            OptionsBar.setActive("option-select");
     },
     checkBoundary: (e) => {
         if (e.target === document.querySelectorAll('#NoteWorthyOfficial > .Noteworthy_options_bar') ||

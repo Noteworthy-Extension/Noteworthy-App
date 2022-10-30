@@ -5,7 +5,7 @@ import { iconURLS } from './../DropdownSVGs.js';
 import { NoteSelect } from '../../../Note/Backend/NoteSelect.js';
 import { EditBar } from '../EditBar/EditBar.js';
 const optionsBarHTML = `
-<div class="Noteworthy_options_bar Noteworthy_options_bar-open" style="position: fixed; display: none;">
+<div class="Noteworthy_options_bar" style="position: fixed; display: none;">
 	<div class="Noteworthy_options_bar-blur"></div>
 	<button class="Noteworthy_options_bar-btn">
 		<span></span>
@@ -182,15 +182,17 @@ export const OptionsBar = {
     initToggle: () => {
         const optionsBar = document.querySelector('.Noteworthy_options_bar');
         const mainContainer = document.querySelector('#NoteWorthyOfficial-MainContainer');
+        OptionsBar.setActive("option-select");
         document.addEventListener('Noteworthy-Toggle', () => {
             if (optionsBar.style.display === 'none') {
                 optionsBar.style.display = 'flex';
-                NoteSelect.enabled = true;
+                optionsBar.classList.add('Noteworthy_options_bar-open');
                 mainContainer.classList.remove('MainContainer-Deactive');
             }
             else {
                 optionsBar.style.display = 'none';
                 NoteSelect.enabled = false;
+                optionsBar.classList.remove('Noteworthy_options_bar-open');
                 mainContainer.classList.add('MainContainer-Deactive');
             }
         });

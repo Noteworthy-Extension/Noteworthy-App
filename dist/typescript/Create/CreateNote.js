@@ -75,7 +75,7 @@ export const createNote = {
         activeElement.$save();
         activeElement = null;
         if (pointer)
-            OptionsBar.setActive("option-select");
+            OptionsBar.setActive('option-select');
     },
     checkBoundary: (e) => {
         if (e.target === document.querySelectorAll('#NoteWorthyOfficial > .Noteworthy_options_bar') ||

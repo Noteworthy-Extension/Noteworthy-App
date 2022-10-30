@@ -77,7 +77,7 @@ export const createNote = {
 		if (activeElement === null) return;
 		activeElement.$save();
 		activeElement = null;
-		if (pointer) OptionsBar.setActive("option-select");
+		if (pointer) OptionsBar.setActive('option-select');
 	},
 
 	checkBoundary: (e: any): boolean => {

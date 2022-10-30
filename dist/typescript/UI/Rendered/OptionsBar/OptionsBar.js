@@ -1,111 +1,110 @@
 import { NoteStorage } from './../../../Note/Backend/NoteStorage.js';
 import { createNote } from './../../../Create/CreateNote.js';
 import { inject } from './../../../util/common.js';
-import { iconURLS } from './../DropdownSVGs.js';
+import { iconURLs } from './../DropdownSVGs.js';
 import { NoteSelect } from '../../../Note/Backend/NoteSelect.js';
 import { EditBar } from '../EditBar/EditBar.js';
 const optionsBarHTML = `
 <div class="Noteworthy_options_bar" style="position: fixed; display: none;">
 	<div class="Noteworthy_options_bar-blur"></div>
 	<button class="Noteworthy_options_bar-btn">
-		<span></span>
-		<span></span>
+		<img width="20px" height="20px" ondragstart="return false;" src="${iconURLs.logo}" alt="options" />
 	</button>
 
 	<div class="Noteworthy_options_bar-item active_option Noteworthy_tooltip" id="option-select">
 		<span class="tool_tip_text flow_right">Select</span>
-		<img src="${iconURLS.select}" alt="select" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.select}" alt="select" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-item parent-dropdown Noteworthy_tooltip" id="option-draw suboption-pencil">
 		<span class="tool_tip_text flow_right">Draw</span>
-		<img src="${iconURLS.draw.pencil}" alt="draw" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.draw.pencil}" alt="draw" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-dropdown draw_dropdown">
 		<div class="Noteworthy_options_bar-subitem active_option" id="suboption-pencil">
-			<img src="${iconURLS.draw.pencil}" alt="" />
+			<img src="${iconURLs.draw.pencil}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-brush">
-			<img src="${iconURLS.draw.brush}" alt="" />
+			<img src="${iconURLs.draw.brush}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-highlight">
-			<img src="${iconURLS.draw.highlight}" alt="" />
+			<img src="${iconURLs.draw.highlight}" alt="" />
 		</div>
 	</div>
 
 	<div class="Noteworthy_options_bar-item parent-dropdown Noteworthy_tooltip" id="option-line">
 		<span class="tool_tip_text flow_right">Line</span>
-		<img src="${iconURLS.line.line}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.line.line}" alt="" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-dropdown line_dropdown">
 		<div class="Noteworthy_options_bar-subitem active_option" id="suboption-line">
-			<img src="${iconURLS.line.line}" alt="" />
+			<img src="${iconURLs.line.line}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-polyline">
-			<img src="${iconURLS.line.polyline}" alt="" />
+			<img src="${iconURLs.line.polyline}" alt="" />
 		</div>
 	</div>
 
 	<div class="Noteworthy_options_bar-item parent-dropdown Noteworthy_tooltip" id="option-arrow">
 		<span class="tool_tip_text flow_right">Arrow</span>
-		<img src="${iconURLS.arrow.arrow}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.arrow.arrow}" alt="" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-dropdown arrow_dropdown">
 		<div class="Noteworthy_options_bar-subitem active_option" id="suboption-arrow">
-			<img src="${iconURLS.arrow.arrow}" alt="" />
+			<img src="${iconURLs.arrow.arrow}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-polyarrow">
-			<img src="${iconURLS.arrow.polyarrow}" alt="" />
+			<img src="${iconURLs.arrow.polyarrow}" alt="" />
 		</div>
 	</div>
 
 	<div class="Noteworthy_options_bar-item Noteworthy_tooltip" id="option-note">
 		<span class="tool_tip_text flow_right">Note</span>
-		<img src="${iconURLS.note}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.note}" alt="" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-item Noteworthy_tooltip" id="option-text">
 		<span class="tool_tip_text flow_right">Text</span>
-		<img src="${iconURLS.text}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.text}" alt="" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-item parent-dropdown Noteworthy_tooltip" id="option-shape suboption-rect">
 		<span class="tool_tip_text flow_right">Shape</span>
-		<img src="${iconURLS.shape.rect}" alt="rect" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.shape.rect}" alt="rect" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-dropdown rect_dropdown">
 		<div class="Noteworthy_options_bar-subitem active_option" id="suboption-rect">
-			<img src="${iconURLS.shape.rect}" alt="" />
+			<img src="${iconURLs.shape.rect}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-square">
-			<img src="${iconURLS.shape.square}" alt="" />
+			<img src="${iconURLs.shape.square}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-circle">
-			<img src="${iconURLS.shape.circle}" alt="" />
+			<img src="${iconURLs.shape.circle}" alt="" />
 		</div>
 
 		<div class="Noteworthy_options_bar-subitem" id="suboption-ellipse">
-			<img src="${iconURLS.shape.ellipse}" alt="" />
+			<img src="${iconURLs.shape.ellipse}" alt="" />
 		</div>
 	</div>
 
 	<div class="Noteworthy_options_bar-item parent-dropdown Noteworthy_tooltip" id="option-visibility">
 		<span class="tool_tip_text flow_right">Visibility</span>
-		<img src="${iconURLS.visibility}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+		<img src="${iconURLs.visibility}" alt="" class="Noteworthy_options_bar-item-btn-default" />
 	</div>
 
 	<div class="Noteworthy_options_bar-dropdown visibility_dropdown">
-		<input type="range" min="0" max="100" value="100" id="Noteworthy-visibility_slider" />
+		<input type="range" min="0" max="100" step="1" value="100" id="Noteworthy-visibility_slider" />
 	</div>
 
 
@@ -187,7 +186,7 @@ export const OptionsBar = {
     initToggle: () => {
         const optionsBar = document.querySelector('.Noteworthy_options_bar');
         const mainContainer = document.querySelector('#NoteWorthyOfficial-MainContainer');
-        OptionsBar.setActive("option-select");
+        OptionsBar.setActive('option-select');
         document.addEventListener('Noteworthy-Toggle', () => {
             if (optionsBar.style.display === 'none') {
                 optionsBar.style.display = 'flex';
@@ -395,7 +394,7 @@ export const OptionsBar = {
                 }
                 else {
                     switch (item_id[1]) {
-                        case 'poyline':
+                        case 'polyline':
                             createNote.enablePolyline(item_id[1]);
                             break;
                     }
@@ -407,7 +406,7 @@ export const OptionsBar = {
                 }
                 else {
                     switch (item_id[1]) {
-                        case 'poyline':
+                        case 'polyarrow':
                             createNote.enablePolyline(item_id[1]);
                             break;
                     }

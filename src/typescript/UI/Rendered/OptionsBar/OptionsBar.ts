@@ -9,7 +9,7 @@ const optionsBarHTML = `
 <div class="Noteworthy_options_bar" style="position: fixed; display: none;">
 	<div class="Noteworthy_options_bar-blur"></div>
 	<button class="Noteworthy_options_bar-btn">
-		<img width="20px" height="20px" ondragstart="return false;" src="${iconURLs.logo}" alt="options" />
+		<img width="20px" height="20px" style="width: 20px !important; height: 20px !important;" ondragstart="return false;" src="${iconURLs.logo}" alt="options" />
 	</button>
 
 	<div class="Noteworthy_options_bar-item active_option Noteworthy_tooltip" id="option-select">

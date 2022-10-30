@@ -25,7 +25,7 @@ export const NoteSelect = {
     copyKey: 'NoteWorthyOfficialClipboard',
     init: () => {
         document.addEventListener('click', (e) => {
-            if (e.target !== document.querySelector("#NoteWorthyOfficial-MainContainer *") || !e.target.closest('#NoteWorthyOfficial'))
+            if (!e.target.closest('#NoteWorthyOfficial'))
                 NoteSelect.unselect();
         });
         document.addEventListener('keydown', (e) => {

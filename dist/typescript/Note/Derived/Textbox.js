@@ -371,6 +371,15 @@ export class Textbox extends Note {
 			</div>
 		`;
         };
+        this.$updateID = () => {
+            const noteElement = document.getElementById(this.$raw_id());
+            const toolbar = document.getElementById(this.$raw_id() + '-toolbar');
+            this.noteID = `${this.noteType}-${this.noteIndex}`;
+            if (noteElement)
+                noteElement.setAttribute('id', this.noteID);
+            if (toolbar)
+                toolbar.setAttribute('id', this.noteID + '-toolbar');
+        };
         this.$init_selectable = () => {
             const note = document.getElementById(this.$raw_id());
             if (note === null)

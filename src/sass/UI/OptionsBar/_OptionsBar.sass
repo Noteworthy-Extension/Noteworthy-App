@@ -13,6 +13,11 @@ $noBlur: 0px
     width: 50px
     padding: 0.25rem 0
 
+    #Noteworthy-visibility_slider
+      appearance: slider-vertical
+      width: 4px
+      height: 100px
+
     &-alignX-left //should open to right
       .Noteworthy_options_bar-dropdown
         translate: 55px 0
@@ -23,6 +28,9 @@ $noBlur: 0px
 
     &-alignY-top //should open down
       flex-direction: column !important
+
+      .Noteworthy_options_bar-dropdown.visibility_dropdown
+        transform: translateY(400px)
 
       .Noteworthy_options_bar-dropdown.rect_dropdown
         transform: translateY(305px)
@@ -41,6 +49,9 @@ $noBlur: 0px
 
       .Noteworthy_options_bar-dropdown
         flex-direction: column-reverse !important
+
+      .Noteworthy_options_bar-dropdown.visibility_dropdown
+        transform: translateY(-400px)
 
       .Noteworthy_options_bar-dropdown.rect_dropdown
         transform: translateY(-300px)

@@ -155,6 +155,9 @@ export const OptionsBar = {
 		if (!OptionsBar.pos) OptionsBar.pos = { x: 0, y: 0 };
 		if (!OptionsBar.position.fixed) OptionsBar.position.fixed = { x: 'left', y: 'top' };
 		const optionsBar = <HTMLElement>document.querySelector('.Noteworthy_options_bar');
+		optionsBar.classList.remove(
+			...Array.from(optionsBar.classList).filter(c => c.startsWith('Noteworthy_options_bar-align'))
+		);
 		if (window.innerWidth < OptionsBar.pos.x) {
 			OptionsBar.pos.x = window.innerWidth - OptionsBar.offset.width;
 		}
@@ -163,13 +166,17 @@ export const OptionsBar = {
 		}
 		if (OptionsBar.position.fixed.x === 'left') {
 			optionsBar.style.left = `${OptionsBar.pos.x}px`;
+			optionsBar.classList.add(`Noteworthy_options_bar-alignX-left`);
 		} else {
 			optionsBar.style.right = `${OptionsBar.pos.x}px`;
+			optionsBar.classList.add(`Noteworthy_options_bar-alignX-right`);
 		}
 		if (OptionsBar.position.fixed.y === 'top') {
 			optionsBar.style.top = `${OptionsBar.pos.y}px`;
+			optionsBar.classList.add(`Noteworthy_options_bar-alignY-top`);
 		} else {
 			optionsBar.style.bottom = `${OptionsBar.pos.y}px`;
+			optionsBar.classList.add(`Noteworthy_options_bar-alignY-bottom`);
 		}
 	},
 
@@ -212,6 +219,7 @@ export const OptionsBar = {
 		document.addEventListener('Noteworthy-Toggle', () => {
 			if (optionsBar.style.display === 'none') {
 				optionsBar.style.display = 'flex';
+				NoteSelect.enabled = true;
 				optionsBar.classList.add('Noteworthy_options_bar-open');
 				mainContainer.classList.remove('MainContainer-Deactive');
 			} else {

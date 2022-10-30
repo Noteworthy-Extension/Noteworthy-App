@@ -1,3 +1,4 @@
+@use '../../theme/ConstTheme' as *
 #NoteWorthyOfficial
   .Noteworthy_options_bar //Main options bar, contains everything related to it
     display: flex
@@ -168,8 +169,8 @@
 
       &.active_option > img[class*='Noteworthy_options_bar'] //When a non parent to a dropdown is active
         // filter: invert(20%)
-        filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='invert'><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter></svg>#invert")
-        // transform: scale(1.2)
+        // filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='invert'><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter></svg>#invert")
+        filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='invert'><feColorMatrix type='matrix' values='#{$Theme} #{$Theme} #{$Theme}'/></filter></svg>#invert")
 
     &-items // The dropdown button that expands with suboptions
       position: fixed

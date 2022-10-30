@@ -177,21 +177,23 @@ export const NoteSelect = {
                             return;
                         if (handle.classList.contains('handle-w')) {
                             const deltaX = -(e.clientX - handleData.x);
-                            NoteSelect.active.$position(NoteSelect.active.values.position, { x: -deltaX, y: 0 });
+                            if (!(NoteSelect.active instanceof Line))
+                                NoteSelect.active.$position(NoteSelect.active.values.position, { x: -deltaX, y: 0 });
                             NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 });
                         }
                         else if (handle.classList.contains('handle-e')) {
                             const deltaX = e.clientX - handleData.x;
-                            NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 });
+                            NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 }, { width: true, height: false });
                         }
                         if (handle.classList.contains('handle-n')) {
                             const deltaY = -(e.clientY - handleData.y);
-                            NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: -deltaY });
+                            if (!(NoteSelect.active instanceof Line))
+                                NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: -deltaY });
                             NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY });
                         }
                         else if (handle.classList.contains('handle-s')) {
                             const deltaY = e.clientY - handleData.y;
-                            NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY });
+                            NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY }, { width: false, height: true });
                         }
                         handleData.x = e.clientX;
                         handleData.y = e.clientY;

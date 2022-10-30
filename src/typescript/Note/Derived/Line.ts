@@ -102,7 +102,25 @@ export class Line extends Note {
 
 		note.setAttribute('points', this.$compressPoints(points));
 		note2.setAttribute('points', this.$compressPoints(points));
+		this.$setOrigin();
 		NoteSelect.updateSelectBox();
+	};
+
+	private readonly $setOrigin = (): void => {
+		const note = <HTMLElement>document.getElementById(this.$raw_id());
+		const note2 = <HTMLElement>document.getElementById(this.$raw_id() + this.values.hitID);
+
+		const pts = {
+			x: this.values.points.map(point => point.x),
+			y: this.values.points.map(point => point.y),
+		}
+
+		const average = {
+			x: (Math.max(...pts.x) + Math.min(...pts.x)) / 2,
+			y: (Math.max(...pts.y) + Math.min(...pts.y)) / 2,
+		}
+		note.style.transformOrigin = `${average.x}px ${average.y}px`;
+		note2.style.transformOrigin = `${average.x}px ${average.y}px`;
 	};
 
 	private readonly $setRotation = (rotation = this.values.rotation): void => {
@@ -170,7 +188,7 @@ export class Line extends Note {
 				x: e.pageX - this.dragData.notePos.x,
 				y: e.pageY - this.dragData.notePos.y,
 			}; // Calculates the difference between the mouse position and the note position
-			this.$position(differNotePos); // Sets the new position
+			this.$position(this.values.position, differNotePos); // Sets the new position
 
 			this.$save(); // Saves the notes new position
 
@@ -185,7 +203,7 @@ export class Line extends Note {
 				x: e.pageX - this.dragData.notePos.x,
 				y: e.pageY - this.dragData.notePos.y,
 			}; // Difference between mouse and note previous position
-			this.$position(differNotePos); // Updates the notes position by adding x and y as second param
+			this.$position(this.values.position, differNotePos); // Updates the notes position by adding x and y as second param
 
 			this.dragData.notePos = { x: e.pageX, y: e.pageY }; // Updates the notes previous position
 		});
@@ -335,7 +353,7 @@ export class Line extends Note {
 		this.$setPoints();
 	};
 
-	public readonly $position = (add_position = { x: 0, y: 0 }) => {
+	public readonly $position = (position = {x:0,y:0}, add_position = { x: 0, y: 0 }) => {
 		this.values.points = this.values.points.map(point => {
 			return {
 				x: point.x + add_position.x,
@@ -346,21 +364,31 @@ export class Line extends Note {
 	};
 
 	//size = { width: 0, height: 0 },
-	public readonly $size = (size = { width: 0, height: 0 }, add_size = { width: 0, height: 0 }) => {
+	public readonly $size = (size = { width: 0, height: 0 }, add_size = { width: 0, height: 0 }, pos = { width: false, height: false }) => {
 		console.log(add_size);
 		const maxX = Math.max(...this.values.points.map(point => point.x));
 		const maxY = Math.max(...this.values.points.map(point => point.y));
+		const min = {
+			x: Math.min(...this.values.points.map(point => point.x)),
+			y: Math.min(...this.values.points.map(point => point.y)),
+		};
 		console.log(maxX, maxY);
-		const ratioX = (maxX + add_size.width) / maxX;
-		const ratioY = (maxY + add_size.height) / maxY;
+		const ratioX = add_size.width != 0 ? (maxX + add_size.width) / maxX : 1;
+		const ratioY = add_size.height != 0 ? (maxY + add_size.height) / maxY : 1;
 		console.log(ratioX, ratioY);
 		this.values.points = this.values.points.map(point => {
 			return {
-				x: (add_size.width != 0 ? point.x * ratioX : point.x) - add_size.width,
-				y: (add_size.height != 0 ? point.y * ratioY : point.y) - add_size.height,
+				x: point.x * ratioX - (maxX * ratioX - maxX),
+				y: point.y * ratioY - (maxY * ratioY - maxY),
 			};
 		});
 		console.log(this.values.points);
+		const newMin = {
+			x: Math.min(...this.values.points.map(point => point.x)),
+			y: Math.min(...this.values.points.map(point => point.y)),
+		};
+		if(pos.width) this.$position(this.values.position, {x: min.x - newMin.x, y: 0});
+		if(pos.height) this.$position(this.values.position, {x: 0, y: min.y - newMin.y});
 		this.$setPoints();
 		//scale the size based on the size of the note only using add_size
 	};

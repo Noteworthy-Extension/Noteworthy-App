@@ -134,4 +134,4 @@ A list of some of the tools and resources we used to make our app.
 [Sass]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667022004/Noteworthy%20App/Sass_Logo_Color.svg_80x80_vakikj.png
 [Sass-url]: https://sass-lang.com/
 [Gulp-url]: https://gulpjs.com/
-[Gulp]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667178482/Noteworthy%20App/Gulp.js_Logo.svg_1_89_cqihip.png
+[Gulp]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667178816/Noteworthy%20App/GulpLogoBetter_80x80_pdl2fk.png

@@ -235,15 +235,18 @@ export class Textbox extends Note {
 	/* ====== Public Methods ================================================================= */
 
 	public readonly $size = (
-		size: { width: number; height: number } = this.values.size
+		size: { width: number; height: number } = this.values.size,
+		add_size = { width: 0, height: 0 }
 	): { width: number; height: number } => {
 		let changed = false;
-		if (size.width !== this.values.size.width) {
+		if (size !== this.values.size) {
 			this.values.size.width = size.width;
+			this.values.size.height = size.height;
 			changed = true;
 		}
-		if (size.height !== this.values.size.height) {
-			this.values.size.height = size.height;
+		if (add_size.width !== 0 || add_size.height !== 0) {
+			this.values.size.width = parseInt(this.values.size.width.toString()) + add_size.width;
+			this.values.size.height = parseInt(this.values.size.height.toString()) + add_size.height;
 			changed = true;
 		}
 		if (changed) this.$setSize(); //Sets the size of the note

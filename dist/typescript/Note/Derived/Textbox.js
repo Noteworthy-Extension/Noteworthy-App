@@ -183,14 +183,16 @@ export class Textbox extends Note {
                 this.dragData.notePos = { x: e.pageX, y: e.pageY };
             });
         };
-        this.$size = (size = this.values.size) => {
+        this.$size = (size = this.values.size, add_size = { width: 0, height: 0 }) => {
             let changed = false;
-            if (size.width !== this.values.size.width) {
+            if (size !== this.values.size) {
                 this.values.size.width = size.width;
+                this.values.size.height = size.height;
                 changed = true;
             }
-            if (size.height !== this.values.size.height) {
-                this.values.size.height = size.height;
+            if (add_size.width !== 0 || add_size.height !== 0) {
+                this.values.size.width = parseInt(this.values.size.width.toString()) + add_size.width;
+                this.values.size.height = parseInt(this.values.size.height.toString()) + add_size.height;
                 changed = true;
             }
             if (changed)

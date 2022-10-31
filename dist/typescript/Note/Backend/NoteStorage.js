@@ -1,5 +1,5 @@
 export const NoteStorage = {
-    prefix: 'savedNoteData=>',
+    prefix: 'NoteworthyData=>',
     loadNotes() {
         const loadedNotes = [];
         let noteCount = 1;

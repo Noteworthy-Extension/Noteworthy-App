@@ -1,5 +1,5 @@
 export const NoteStorage = {
-	prefix: 'savedNoteData=>',
+	prefix: 'NoteworthyData=>',
 
 	//Loaded all Notes
 	loadNotes(): string[] {

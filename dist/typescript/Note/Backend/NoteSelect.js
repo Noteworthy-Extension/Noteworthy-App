@@ -27,8 +27,10 @@ export const NoteSelect = {
         document.addEventListener('click', (e) => {
             if (!NoteSelect.active)
                 return;
-            console.log("Target: ", e.target);
-            if (!e.target.closest('#NoteWorthyOfficial') || e.target == document.querySelector('#NoteWorthyOfficial-MainContainer') || e.target == document.querySelector('#NoteWorthyOfficial-MainContainer > svg')) {
+            console.log('Target: ', e.target);
+            if (!e.target.closest('#NoteWorthyOfficial') ||
+                e.target == document.querySelector('#NoteWorthyOfficial-MainContainer') ||
+                e.target == document.querySelector('#NoteWorthyOfficial-MainContainer > svg')) {
                 console.log('Unselect');
                 NoteSelect.unselect();
             }
@@ -181,8 +183,10 @@ export const NoteSelect = {
                             return;
                         if (handle.classList.contains('handle-w')) {
                             const deltaX = -(e.clientX - handleData.x);
-                            if (!(NoteSelect.active instanceof Line))
+                            if (!(NoteSelect.active instanceof Line)) {
                                 NoteSelect.active.$position(NoteSelect.active.values.position, { x: -deltaX, y: 0 });
+                            }
+                            console.log(NoteSelect.active);
                             NoteSelect.active.$size(NoteSelect.active.values.size, { width: deltaX, height: 0 });
                         }
                         else if (handle.classList.contains('handle-e')) {
@@ -191,8 +195,9 @@ export const NoteSelect = {
                         }
                         if (handle.classList.contains('handle-n')) {
                             const deltaY = -(e.clientY - handleData.y);
-                            if (!(NoteSelect.active instanceof Line))
+                            if (!(NoteSelect.active instanceof Line)) {
                                 NoteSelect.active.$position(NoteSelect.active.values.position, { x: 0, y: -deltaY });
+                            }
                             NoteSelect.active.$size(NoteSelect.active.values.size, { width: 0, height: deltaY });
                         }
                         else if (handle.classList.contains('handle-s')) {

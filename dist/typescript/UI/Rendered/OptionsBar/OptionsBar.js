@@ -4,6 +4,7 @@ import { inject } from './../../../util/common.js';
 import { iconURLs } from './../DropdownSVGs.js';
 import { NoteSelect } from '../../../Note/Backend/NoteSelect.js';
 import { EditBar } from '../EditBar/EditBar.js';
+document.querySelectorAll('#NoteWorthyOfficial img').forEach(img => img.draggable = false);
 const optionsBarHTML = `
 <div class="Noteworthy_options_bar" style="position: fixed; display: none;">
 	<div class="Noteworthy_options_bar-blur"></div>
@@ -107,6 +108,10 @@ const optionsBarHTML = `
 		<input type="range" min="0" max="100" step="1" value="100" id="Noteworthy-visibility_slider" />
 	</div>
 
+	<div class="Noteworthy_options_bar-item Noteworthy_tooltip" id="option-delete">
+		<span class="tool_tip_text flow_right">Delete</span>
+		<img src="${iconURLs.delete}" alt="" class="Noteworthy_options_bar-item-btn-default" />
+	</div>
 
 </div>
 
@@ -419,6 +424,13 @@ export const OptionsBar = {
         }
     },
     setActive: (option_id) => {
+        if (option_id === "option-delete") {
+            if (confirm(`Are you sure you want to delete all ${NoteStorage.getIndex()} notes and reset Noteworthy on this page? \n This action cannot be undone and will refresh the page.`)) {
+                localStorage.clear();
+                location.reload();
+            }
+            return;
+        }
         const options = document.querySelectorAll('.Noteworthy_options_bar-item');
         const dropdowns = document.querySelectorAll('.Noteworthy_options_bar-dropdown');
         dropdowns.forEach((dropdown) => {

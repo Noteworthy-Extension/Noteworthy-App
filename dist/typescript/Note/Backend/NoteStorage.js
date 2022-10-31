@@ -1,6 +1,6 @@
 export const NoteStorage = {
     prefix: 'savedNoteData=>',
-    loadNotes: function () {
+    loadNotes() {
         const loadedNotes = [];
         let noteCount = 1;
         while (localStorage.getItem(`${NoteStorage.prefix}${location.href}:note:${noteCount}`) !== null) {
@@ -10,13 +10,13 @@ export const NoteStorage = {
         }
         return loadedNotes;
     },
-    getNote: function (noteNum, pathname = location.href) {
+    getNote(noteNum, pathname = location.href) {
         return localStorage.getItem(`${NoteStorage.prefix}${pathname}:note:${noteNum}`) || '';
     },
-    getIndex: function (pathname = location.href) {
-        return parseInt(localStorage.getItem(`${NoteStorage.prefix}${pathname}:index`) || '0');
+    getIndex(pathname = location.href) {
+        return parseInt(localStorage.getItem(`${NoteStorage.prefix}${pathname}:noteCount`) || '0');
     },
-    saveNote: function (noteContent) {
+    saveNote(noteContent) {
         const newIndex = parseInt(localStorage.getItem(`${NoteStorage.prefix}${location.href}:noteCount`) || '0') + 1;
         const encodedNoteName = `${NoteStorage.prefix}${location.href}:note:${newIndex}`;
         const encodedNoteContent = noteContent;
@@ -24,10 +24,10 @@ export const NoteStorage = {
         localStorage.setItem(`${NoteStorage.prefix}${location.href}:noteCount`, newIndex.toString());
         return newIndex;
     },
-    updateNote: function (noteNum, noteContent, pathname = location.href) {
+    updateNote(noteNum, noteContent, pathname = location.href) {
         localStorage.setItem(`${NoteStorage.prefix}${pathname}:note:${noteNum}`, noteContent);
     },
-    deleteNote: function (noteNum, pathname = location.href) {
+    deleteNote(noteNum, pathname = location.href) {
         localStorage.removeItem(`${NoteStorage.prefix}${pathname}:note:${noteNum}`);
         let noteCount = noteNum + 1;
         while (localStorage.getItem(`${NoteStorage.prefix}${pathname}:note:${noteCount}`) !== null) {

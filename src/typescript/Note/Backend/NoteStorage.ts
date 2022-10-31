@@ -2,7 +2,7 @@ export const NoteStorage = {
 	prefix: 'savedNoteData=>',
 
 	//Loaded all Notes
-	loadNotes: function (): string[] {
+	loadNotes(): string[] {
 		const loadedNotes: any[] = [];
 		let noteCount = 1; //Starts note count at 1
 		while (localStorage.getItem(`${NoteStorage.prefix}${location.href}:note:${noteCount}`) !== null) {
@@ -21,20 +21,17 @@ export const NoteStorage = {
 	},
 
 	//Returns singular note content
-	getNote: function (noteNum: number, pathname: string = location.href): string {
+	getNote(noteNum: number, pathname: string = location.href): string {
 		return localStorage.getItem(`${NoteStorage.prefix}${pathname}:note:${noteNum}`) || '';
 	},
 
-	getIndex: function (pathname: string = location.href): number {
-		return parseInt(localStorage.getItem(`${NoteStorage.prefix}${pathname}:index`) || '0');
+	// Gets the index of the last note
+	getIndex(pathname: string = location.href): number {
+		return parseInt(localStorage.getItem(`${NoteStorage.prefix}${pathname}:noteCount`) || '0');
 	},
 
-	// setIndex: function (index: number, pathname: string = location.href): void {
-	// 	localStorage.setItem(`${pathname}:noteCount`, index.toString());
-	// }
-
 	//Saves a new note to local storage
-	saveNote: function (noteContent: string): number {
+	saveNote(noteContent: string): number {
 		const newIndex =
 			parseInt(localStorage.getItem(`${NoteStorage.prefix}${location.href}:noteCount`) || '0') + 1;
 
@@ -51,7 +48,7 @@ export const NoteStorage = {
 	},
 
 	//Updates a note
-	updateNote: function (
+	updateNote(
 		noteNum: number,
 		noteContent: string,
 		pathname: string = location.href
@@ -60,7 +57,7 @@ export const NoteStorage = {
 	},
 
 	//Deletes a certain note
-	deleteNote: function (noteNum: number, pathname: string = location.href): void {
+	deleteNote(noteNum: number, pathname: string = location.href): void {
 		localStorage.removeItem(`${NoteStorage.prefix}${pathname}:note:${noteNum}`); //Remove note from local storage
 
 		let noteCount = noteNum + 1; //Start at the note after the one we deleted

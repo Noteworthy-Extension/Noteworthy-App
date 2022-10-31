@@ -13,9 +13,9 @@
     A note-taking app that lets you annotate any website.
     <br />
     <br />
-    [Download](https://example.com) the extension in the chrome web store
+    <a href="https://example.com">Download</a> the extension in the chrome web store
     ·
-    [Test](https://example.com) out the editor here
+    <a href="https://example.com">Test</a> out the editor here
     ·
     <a href="https://github.com/Noteworthy-Extension/Noteworthy-App/issues">Report a bug</a>
   </p>
@@ -37,8 +37,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -56,8 +54,11 @@ Did you know that people forget things in under 30 seconds? That's why we create
 
 We built our app with pure Typescript, then we transpile our code to JS. After compiling it to code that the browser can read we bundled our code into one minified file with Gulp. This is the file that we use for the chrome extension.
 
+We built our app with pure Typescript and Sass. After compiling this, we
+
 * [![Typescript][Typescript]][Typescript-url]
 * [![Sass][Sass]][Sass-url]
+* [![Gulp][Gulp]][Gulp-url]
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -94,7 +95,7 @@ _There are a few ways to install noteworthy_
 
   <ul>
     <li>
-      Git clone the [src repo](https://example.com). Then go to chrome://extensions and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
+      Git clone the <a href="https://example.com">src repo</a> Then go to <a href="chrome://extensions">chrome://extensions</a> and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
     </li>
   </ul>
 </ul>
@@ -118,8 +119,8 @@ Project Link: [https://github.com/Noteworthy-Extension/Noteworthy-App](https://g
 
 A list of some of the tools and resources we used to make our app.
 
-* [Icons8](https://icons8.com/)
 * [Quill Editor](https://quilljs.com/)
+* [Icons8](https://icons8.com/)
 * [Gulp](https://gulpjs.com/)
 * [Sass Live Compile](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 
@@ -132,3 +133,5 @@ A list of some of the tools and resources we used to make our app.
 [Typescript-url]: https://typescriptlang.org
 [Sass]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667022004/Noteworthy%20App/Sass_Logo_Color.svg_80x80_vakikj.png
 [Sass-url]: https://sass-lang.com/
+[Gulp-url]: https://gulpjs.com/
+[Gulp]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667178482/Noteworthy%20App/Gulp.js_Logo.svg_1_89_cqihip.png

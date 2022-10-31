@@ -524,7 +524,7 @@ export const createNote = {
                 break;
             case 'highlight':
                 createData.param.line.width = 15;
-                createData.param.line.color = '#ffff00';
+                createData.param.line.color = 'rgb(255, 255, 0)';
                 createData.param.line.opacity = 50;
                 break;
             default:

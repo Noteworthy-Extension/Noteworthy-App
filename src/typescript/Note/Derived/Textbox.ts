@@ -151,7 +151,7 @@ export class Textbox extends Note {
 				},
 				theme: 'snow',
 			});
-			editor.setContents(JSON.parse(this.values.content));
+			editor.setContents((this.values.content !== "" && this.values.content.startsWith("{")) ? JSON.parse(this.values.content) : "{'ops':[{'insert':''}]}");
 			//skipcq: JS-0342
 			const thisRef = this;
 			// Todo: Remove _'s; I set typescript to a stricter setting so it won't allow unused variables

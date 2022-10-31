@@ -34,7 +34,12 @@ export const NoteSelect = {
 
 	init: () => {
 		document.addEventListener('click', (e: MouseEvent) => {
-			if (!(<Element>e.target).closest('#NoteWorthyOfficial')) NoteSelect.unselect();
+			if (!NoteSelect.active) return;
+			console.log("Target: ", e.target);
+			if (!(<Element>e.target).closest('#NoteWorthyOfficial') || (<Element>e.target) == document.querySelector('#NoteWorthyOfficial-MainContainer') || (<Element>e.target)  == document.querySelector('#NoteWorthyOfficial-MainContainer > svg')) {
+				console.log('Unselect');
+				NoteSelect.unselect();
+			}
 		});
 
 		document.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -47,7 +52,7 @@ export const NoteSelect = {
 			if (e.key === 'c' && e.ctrlKey) {
 				navigator.clipboard.writeText(
 					NoteSelect.copyKey + NoteEncryption.encode(NoteSelect.active.$data())
-				); 
+				);
 			}
 			if (e.key === 'Escape') {
 				NoteSelect.unselect();

@@ -104,6 +104,7 @@ export const EditBar = {
         return `<div class="Noteworthy-edit_bar-item">${html}</div>`;
     },
     clear: () => {
+        console.trace('clear edit bar');
         document.querySelector('.Noteworthy-edit_bar-inputs').innerHTML = '';
         document.querySelector('.Noteworthy-edit_bar-toolbars').style.display = 'none';
         EditBar.hideToolbars();
@@ -112,6 +113,7 @@ export const EditBar = {
         document.querySelector('.Noteworthy-edit_bar').style.display = 'flex';
     },
     hide: () => {
+        console.log("Hide edit bar");
         document.querySelector('.Noteworthy-edit_bar').style.display = 'none';
         document.querySelector('.Noteworthy-edit_bar-toolbars').style.display = 'none';
     },

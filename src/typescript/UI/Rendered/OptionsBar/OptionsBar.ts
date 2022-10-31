@@ -423,10 +423,8 @@ export const OptionsBar = {
 		dropdowns.forEach((dropdown): void => {
 			dropdown.classList.remove('dropdown_open');
 		});
-		// NoteSelect.enabled = optionsBar.classList.contains('Noteworthy_options_bar-open');
-		// if (!NoteSelect.enabled) {
-		// 	NoteSelect.unselect();
-		// }
+		OptionsBar.setActive("option-select");
+		createNote.disableAll();
 	},
 
 	toggleDropdownItem: (): void => {

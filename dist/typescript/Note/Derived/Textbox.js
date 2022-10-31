@@ -111,7 +111,7 @@ export class Textbox extends Note {
                     },
                     theme: 'snow',
                 });
-                editor.setContents(JSON.parse(this.values.content));
+                editor.setContents((this.values.content !== "" && this.values.content.startsWith("{")) ? JSON.parse(this.values.content) : "{'ops':[{'insert':''}]}");
                 const thisRef = this;
                 editor.on('text-change', (_delta, _oldDelta, source) => {
                     console.log(JSON.stringify(editor.getContents()));

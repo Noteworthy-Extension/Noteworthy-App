@@ -7,7 +7,6 @@ import { NoteStorage } from './NoteStorage.js';
 export function loadSavedNotes() {
     for (const note of NoteStorage.loadNotes()) {
         const decodedNote = NoteEncryption.decode(note);
-        console.log('Loading notes');
         switch (decodedNote.type) {
             case 'Textbox':
                 new Textbox(decodedNote.parameters, decodedNote.content, decodedNote.index);

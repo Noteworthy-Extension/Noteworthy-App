@@ -111,15 +111,18 @@ $nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
           padding-top: 0.25rem
 
     &.Noteworthy_options_bar-open .Noteworthy_options_bar-btn
+      box-shadow: none !important
       // background-color: rgba(0, 0, 0, 0.0)
       // background-color: #dadada
       // border: none
 
     &-btn //Button to toggle options bar
-      background-color: #f4f4f4
+      // background-color: #f4f4f4
+      background-color: var(--Bg)
       border: 1px solid rgba(0, 0, 0, 0.15)
       backdrop-filter: blur($noBlur)
-      // box-shadow: 2px 3px 8px 2px rgba(0,0,0,0.10)
+      box-shadow: 2px 3px 8px 2px rgba(0,0,0,0.10)
+
       cursor: pointer
 
       width: 45px
@@ -133,6 +136,22 @@ $nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
       justify-content: center
       align-items: center
       flex-direction: column
+      transform: scale(1)
+
+      transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out
+
+      &:active
+        transform: scale(1.05)
+
+      &:hover
+        box-shadow: 2px 3px 8px 2px rgba(0,0,0,0.20)
+
+      img
+        width: 20px !important
+        height: 20px !important
+        max-width: 20px !important
+        max-height: 20px !important
+        margin: 0 !important
 
       // transition: border-radius 600ms ease-in-out, background-color 500ms ease-in-out, width 500ms ease-in-out, height 500ms ease-in-out
 
@@ -190,7 +209,6 @@ $nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
         filter: $activeColor
         transform: scale(1.2)
 
-
     &-items // The dropdown button that expands with suboptions
       position: fixed
       display: flex
@@ -238,7 +256,7 @@ $nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
         transform: scale(0.85)
 
       &.active_option //The subitem that is active
-        filter:$activeColor
+        filter: $activeColor
         transform: scale(1.2)
 
   .visibility_dropdown
@@ -253,6 +271,7 @@ $nonActiveColor: grayscale(0) invert(0) brightness(1) drop-shadow(none)
     #Noteworthy-visibility_slider
       // -webkit-appearance: slider-vertical
       // appearance: slider-vertical
-      transform: rotate(270deg)
-      width: 100px
-      height: 4px
+      transform: rotate(270deg) !important
+      width: 100px !important
+      height: 4px !important
+      accent-color: #000 !important

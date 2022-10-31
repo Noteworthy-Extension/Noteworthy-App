@@ -353,6 +353,8 @@ export const OptionsBar = {
         dropdowns.forEach((dropdown) => {
             dropdown.classList.remove('dropdown_open');
         });
+        OptionsBar.setActive("option-select");
+        createNote.disableAll();
     },
     toggleDropdownItem: () => {
         const parentDropdown = document.querySelectorAll('.parent-dropdown');

@@ -25,8 +25,13 @@ export const NoteSelect = {
     copyKey: 'NoteWorthyOfficialClipboard',
     init: () => {
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('#NoteWorthyOfficial'))
+            if (!NoteSelect.active)
+                return;
+            console.log("Target: ", e.target);
+            if (!e.target.closest('#NoteWorthyOfficial') || e.target == document.querySelector('#NoteWorthyOfficial-MainContainer') || e.target == document.querySelector('#NoteWorthyOfficial-MainContainer > svg')) {
+                console.log('Unselect');
                 NoteSelect.unselect();
+            }
         });
         document.addEventListener('keydown', (e) => {
             if (!NoteSelect.enabled)

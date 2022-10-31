@@ -127,7 +127,7 @@ Project Link: [https://github.com/Noteworthy-Extension/Noteworthy-App](https://g
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-A list of some of the tools and resources we used to make our app.
+Some of the tools and resources we used to make our app.
 
 * [Quill Editor](https://quilljs.com/)
 * [Icons8](https://icons8.com/)

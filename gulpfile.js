@@ -85,7 +85,7 @@ const bundle = () => {
 };
 
 const watchJs = () => watch(AllFiles, miniBundle);
-const watchExtension = () => watch(JsFiles, bundleExtension);
+const watchExtension = () => watch(AllFiles, bundleExtension);
 
 exports.miniBundle = miniBundle;
 exports.bundleExtension = bundleExtension;

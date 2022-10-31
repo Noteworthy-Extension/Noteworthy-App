@@ -10,8 +10,6 @@ export function loadSavedNotes() {
 	for (const note of NoteStorage.loadNotes()) {
 		const decodedNote = NoteEncryption.decode(note);
 
-		console.log('Loading notes');
-
 		switch (decodedNote.type) {
 			case 'Textbox':
 				// skipcq JS-0078

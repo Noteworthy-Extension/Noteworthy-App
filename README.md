@@ -15,7 +15,7 @@
     <br />
     <a href="https://example.com">Download</a> the extension in the chrome web store
     ·
-    <a href="https://example.com">Test</a> out the editor here
+    <a href="https://example.com">Test</a> out the app here
     ·
     <a href="https://github.com/Noteworthy-Extension/Noteworthy-App/issues">Report a bug</a>
   </p>

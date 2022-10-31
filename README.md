@@ -97,7 +97,7 @@ _There are a few ways to install noteworthy_
     </li>
 
     <li>
-      Go to the <a href="https://example.com">Github Pages</a> and drag the link that says "bookmarklet" into your bookmarks bar. (If it is hidden, press Ctrl + Shift + B).
+      Go to the Github Pages and drag the link that says "bookmarklet" into your bookmarks bar. (If it is hidden, press Ctrl + Shift + B).
     </li>
   </ul>
 

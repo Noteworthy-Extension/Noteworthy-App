@@ -3,8 +3,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/Noteworthy-Extension">
+    <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Noteworthy App</h3>
@@ -48,13 +48,23 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Did you know that people forget things in under 30 seconds? That's why we created Noteworthy.
+Noteworthy is a browser based extension that allows you to make annotations and take notes on any website. It has many features from text to drawing that all work on any website. With local storage, the notes you take are saved locally to your device so that the notes load when you visit the site again. 
+
+### Features
+
+Noteworthy has many features giving you as much freedom on the website as if it was a piece of paper. 
+
+With Noteworthy you can annotate the page with:
+* Drawing
+* Highlighting
+* Shapes
+* Lines
+* Arrows
+* Textboxes
 
 ### Built With
 
-We built our app with pure Typescript, then we transpile our code to JS. After compiling it to code that the browser can read we bundled our code into one minified file with Gulp. This is the file that we use for the chrome extension.
-
-We built our app with pure Typescript and Sass. After compiling this, we
+We built our app with pure Typescript to ensure code security, then we transpile our code to JS. We also used pure Sass which allows more complex visual styling and makes it easier for the app to not conflict with the website. After compiling it to code that the browser can read, we bundled our code into one minified file with Gulp. This is the file that we use for the chrome extension.
 
 * [![Typescript][Typescript]][Typescript-url]
 * [![Sass][Sass]][Sass-url]
@@ -83,7 +93,7 @@ _There are a few ways to install noteworthy_
 
   <ul>
     <li>
-      If you want to test Noteworthy before downloading it, you can run a bookmarklet. A bookmarklet is a Javascript in a bookmark, this bookmark has the be run every time you load a page making this not a long-term way to download.
+      If you want to test Noteworthy before downloading it, you can run a bookmarklet. A bookmarklet is a Javascript in a bookmark, this bookmark has to be run every time you load a page making this not a long-term way to download.
     </li>
 
     <li>
@@ -95,7 +105,7 @@ _There are a few ways to install noteworthy_
 
   <ul>
     <li>
-      Git clone the <a href="https://example.com">src repo</a> Then go to <a href="chrome://extensions">chrome://extensions</a> and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
+      Git clone the <a href="https://github.com/Noteworthy-Extension/Noteworthy-Extension">src repo</a> Then go to <a href="chrome://extensions">chrome://extensions</a> and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
     </li>
   </ul>
 </ul>
@@ -135,3 +145,5 @@ A list of some of the tools and resources we used to make our app.
 [Sass-url]: https://sass-lang.com/
 [Gulp-url]: https://gulpjs.com/
 [Gulp]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667178816/Noteworthy%20App/GulpLogoBetter_80x80_pdl2fk.png
+
+

@@ -13,9 +13,7 @@
     A note-taking app that lets you annotate any website.
     <br />
     <br />
-    <a href="https://example.com">Download</a> the extension in the chrome web store
-    ·
-    <a href="https://example.com">Test</a> out the app here
+    <a href="https://chrome.google.com/webstore/detail/noteworthy/ipgeapjcihgdkhoilllkfgkhailadfha">Download</a> the extension in the chrome web store
     ·
     <a href="https://github.com/Noteworthy-Extension/Noteworthy-App/issues">Report a bug</a>
   </p>
@@ -77,31 +75,18 @@ This is a guide on a few ways to install the extension.
 
 ### Installation
 
-_There are a few ways to install noteworthy_
+_There are a few ways to install Noteworthy_
 <ul>
   <li>Chrome Webstore</li>
 
   <ul>
-    <li>The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the
-    <a href='https://example.com'>Chrome Webstore</a>
-    </li>
+    The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the
+    <a href='https://chrome.google.com/webstore/detail/noteworthy/ipgeapjcihgdkhoilllkfgkhailadfha'>Chrome Webstore</a>
 
-    <li>Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return</li>
+    Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return
   </ul>
-
-  <li>2. Bookmarklet</li>
-
-  <ul>
-    <li>
-      If you want to test Noteworthy before downloading it, you can run a bookmarklet. A bookmarklet is a Javascript in a bookmark, this bookmark has to be run every time you load a page making this not a long-term way to download.
-    </li>
-
-    <li>
-      Go to the Github Pages and drag the link that says "bookmarklet" into your bookmarks bar. (If it is hidden, press Ctrl + Shift + B).
-    </li>
-  </ul>
-
-  <li>3. From the source</li>
+  
+  <li>2. From the source</li>
 
   <ul>
     <li>
@@ -127,7 +112,7 @@ Project Link: [https://github.com/Noteworthy-Extension/Noteworthy-App](https://g
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Some of the tools and resources we used to make our app.
+A list of some of the tools and resources we used to make our app.
 
 * [Quill Editor](https://quilljs.com/)
 * [Icons8](https://icons8.com/)

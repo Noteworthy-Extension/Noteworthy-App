@@ -4,10 +4,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/Noteworthy-Extension">
-    <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="100" height="100">
+    <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="100" height="100" style="background-color: white;">
   </a>
 
-  <h3 align="center">Noteworthy App</h3>
+  <h1 align="center">Noteworthy App</h1>
 
   <p align="center">
     A note-taking app that lets you annotate any website.

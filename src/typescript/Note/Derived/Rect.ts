@@ -321,7 +321,7 @@ export class Rect extends Note {
 		return this.values.size; //Returns the new size
 	};
 
-	public readonly $rotation = (rotation: number = this.values.rotation, add_rotation: number = 0): number => {
+	public readonly $rotation = (rotation: number = this.values.rotation, add_rotation = 0): number => {
 		let changed = false;
 		if (rotation !== this.values.rotation) {
 			this.values.rotation = rotation;

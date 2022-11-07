@@ -4,10 +4,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/Noteworthy-Extension">
-    <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="100" height="100">
+    <img src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667020915/Noteworthy%20App/Noteworthy-Logo_p2w7om.png" alt="Logo" width="100" height="100" style="background-color: white;">
   </a>
 
-  <h3 align="center">Noteworthy App</h3>
+  <h1 align="center">Noteworthy App</h1>
 
   <p align="center">
     A note-taking app that lets you annotate any website.
@@ -21,7 +21,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary><h3 style="display: inline;">Table of Contents</h3></summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -63,9 +63,11 @@ With Noteworthy you can annotate the page with:
 
 We built our app with pure Typescript to ensure code security, then we transpile our code to JS. We also used pure Sass which allows more complex visual styling and makes it easier for the app to not conflict with the website. After compiling it to code that the browser can read, we bundled our code into one minified file with Gulp. This is the file that we use for the chrome extension.
 
-* [![Typescript][Typescript]][Typescript-url]
-* [![Sass][Sass]][Sass-url]
-* [![Gulp][Gulp]][Gulp-url]
+<ul style="display: flex; justify-content: center; gap: 1.25em; list-style: none; padding-left: 0;">
+  <li><img alt="TypeScript" src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png" href="https://typescriptlang.org" /><div style="text-align: center;">TypeScript</div></li>
+  <li><img alt="Sass" src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667022004/Noteworthy%20App/Sass_Logo_Color.svg_80x80_vakikj.png" href="https://sass-lang.com/" /><div style="text-align: center;">Sass</div></li>
+  <li><img alt="Gulp" src="https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667178816/Noteworthy%20App/GulpLogoBetter_80x80_pdl2fk.png" href="https://gulpjs.com/" /><div style="text-align: center;">Gulp</div></li>
+</ul>
 
 <!-- GETTING STARTED -->
 ## Getting Started

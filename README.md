@@ -41,18 +41,17 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Noteworthy is a browser based extension that allows you to make annotations and take notes on any website. It has many features from text to drawing that all work on any website. With local storage, the notes you take are saved locally to your device so that the notes load when you visit the site again. 
+Noteworthy is a browser-based extension that allows you to make annotations and take notes on any website. It has many features, from text to drawing, that all work on any website. With local storage, the notes you take are saved locally to your device so that the notes load when you visit the site again.
 
 ### Features
 
-Noteworthy has many features giving you as much freedom on the website as if it was a piece of paper. 
+Noteworthy has many features giving you as much freedom to annotate the website as if it was a piece of paper.
 
 With Noteworthy you can annotate the page with:
+
 * Drawing
 * Highlighting
 * Shapes
@@ -75,25 +74,18 @@ This is a guide on a few ways to install the extension.
 
 ### Installation
 
-_There are a few ways to install Noteworthy_
-<ul>
-  <li>Chrome Webstore</li>
+_There are a few ways to install Noteworthy:_
 
-  <ul>
-    The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed. First, go to the app's page on the
-    <a href='https://chrome.google.com/webstore/detail/noteworthy/ipgeapjcihgdkhoilllkfgkhailadfha'>Chrome Webstore</a>
+1. Chrome Webstore
 
-    Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page. Once you're done you can leave the page and all of your notes will stay when you return
-  </ul>
+    The Chrome Webstore is the easiest way to install Noteworthy but sometimes updates get delayed.
+    First, go to the app's page on the [Chrome Webstore](https://chrome.google.com/webstore/detail/noteworthy/ipgeapjcihgdkhoilllkfgkhailadfha).
+    Click install, go to a page and click on the extension. A dropdown should open which will allow you to markdown the page.
+    Once you're done, you can leave the page, and all of your notes will stay when you return.
   
-  <li>2. From the source</li>
+2. From the source
 
-  <ul>
-    <li>
-      Git clone the <a href="https://github.com/Noteworthy-Extension/Noteworthy-Extension">src repo</a> Then go to <a href="chrome://extensions">chrome://extensions</a> and click load unpacked extension. Click the folder that you clone, then dist, then click OK. This will load the extension in and you can use it normally.
-    </li>
-  </ul>
-</ul>
+    Git clone the [src repo](https://github.com/Noteworthy-Extension/Noteworthy-Extension), then go to [chrome://extensions](chrome://extensions) and click "load unpacked extension". Click the folder that you cloned, then dist, then click OK. This will load the extension in and you can use it normally.
 
 <!-- LICENSE -->
 ## License
@@ -119,9 +111,10 @@ A list of some of the tools and resources we used to make our app.
 * [Gulp](https://gulpjs.com/)
 * [Sass Live Compile](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 
-  ### Developers
-  * [@AwesomeMarley](https://github.com/AwesomeMarley)
-  * [@Touch-Grass](https://github.com/Touch-Grass)
+### Developers
+
+* [@AwesomeMarley](https://github.com/AwesomeMarley)
+* [@Touch-Grass](https://github.com/Touch-Grass)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png
@@ -130,5 +123,3 @@ A list of some of the tools and resources we used to make our app.
 [Sass-url]: https://sass-lang.com/
 [Gulp-url]: https://gulpjs.com/
 [Gulp]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667178816/Noteworthy%20App/GulpLogoBetter_80x80_pdl2fk.png
-
-

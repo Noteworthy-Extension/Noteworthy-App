@@ -19,7 +19,7 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
+<!-- TABLE OF CONTENTS  -->
 <details>
   <summary><h3 style="display: inline;">Table of Contents</h3></summary>
   <ol>

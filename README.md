@@ -118,6 +118,7 @@ A list of some of the tools and resources we used to make our app.
 * [@AwesomeMarley](https://github.com/AwesomeMarley)
 * [@Touch-Grass](https://github.com/Touch-Grass)
 * [@BrandonKirbyson](https://github.com/BrandonKirbyson)
+* [@TobinPalmer](https://github.com/TobinPalmer)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Typescript]: https://res.cloudinary.com/dy1ztqqbk/image/upload/v1667021818/Noteworthy%20App/TypescriptLogo_80x80_p80gvb.png
